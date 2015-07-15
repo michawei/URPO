@@ -6,15 +6,15 @@ var searchHisSchema = new mongooes.Schema( {
 });
 
 var urpoUserSchema = new mongoose.Schema({
-  name: String,
-  username: String,
-  password: String,
-  EMPID: String,
-  search_history: [searchHisSchema],
-  Profile: String,
-  memo: String,
-  Draft_ID: [String],
-  role: String
+    name: String,
+    username: String,
+    password: String,
+    EMPID: String,
+    search_history: [searchHisSchema],
+    Profile: String,
+    memo: String,
+    Draft_ID: [String],
+    role: String
 });
 
 module.exports = mongoose.model('urpoUser', urpoUserSchema);
