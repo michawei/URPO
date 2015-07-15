@@ -1,16 +1,16 @@
 # URPO
 	Delta intern 2015.
 ## How to use Github
-###Download this folder to our PC.
+####1.Download this folder to our PC.
 ```
 # git clone https://github.com/michawei/URPO
 ```
-###Update the remote folder to our PC.
+####2.Update the remote folder to our PC.
 Go to our folder, commands:
 ```
 # git pull
 ```
-###Upload our new files to github.
+####3.Upload our new files to github.
 Go to our folder, commands:
 ```
 # git add .
