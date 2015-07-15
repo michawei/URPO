@@ -1,36 +1,5 @@
 var mongoose = require('mongoose');
 
-var ProjectOwnerSchema = new mongoose.Schema({
-    Name: String,
-    EmpID: String
-});
-
-var FileSchema = new mongoose.Schema({
-    file_name: String,
-    file_path: String
-});
-
-var MilestoneSchema = new mongoose.Schema({
-    name: String,
-    start_time: { type: Date, default: Date.now },
-    end_time: { type: Date, default: Date.now },
-    status: String,
-    description: String,
-    file: [FileSchema]
-});
-
-var PrincipalInvestigatorSchema = new mongoose.Schema({
-    Name: String,
-    Email: String,
-    Website: String
-});
-
-var EditStateSchema = new mongoose.Schema({
-    add_or_edit: String,
-    edit_person: String,
-    edit_column: String
-});
-
 var FilterUseSchema = new mongoose.Schema({
     //id: String,
     Category: [String],
@@ -42,12 +11,12 @@ var FilterUseSchema = new mongoose.Schema({
     Region: [String],
     Institution: [String],
     //Competence: String,
-    Collaboration_Model: [String],
+    //Collaboration_Model: [String],
     Project_Agreement_Status: [String],
-    Currency: [String],
+    //Currency: [String],
     //Cash_Funding: String,
-    //Project_Owners: [ProjectOwnerSchema],
-    //Principal_Investigators: [PrincipalInvestigatorSchema],
+    Project_Owners: [String],
+    Principal_Investigators: [String],
     //Milestone: [MilestoneSchema],
     //edit_state: [EditStateSchema],
     //memo: String,
