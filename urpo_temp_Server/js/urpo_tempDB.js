@@ -177,7 +177,7 @@ var DRAFTLIST = [
 			},
 			{
 				"Name": "雲",
-				"EmpID 2": "20"
+				"EmpID": "20"
 			},
 	
 		],
@@ -223,7 +223,7 @@ var DRAFTLIST = [
 var PROJECTLIST = [{
 "id":"00000",
 "Category":"URPO",
-"DeptTeam":"Life Science",
+"Dept":"Life Science",
 "Project_Name":"",
 "Project_Description":"",
 "Estimated_Start_Date":"",
