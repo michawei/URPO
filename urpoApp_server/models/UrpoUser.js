@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
 
-var searchHisSchema = new mongooes.Schema( {
+var searchHisSchema = new mongoose.Schema( {
 	search_condition: {},
 	date: { type: Date, default: Date.now }
 });
 
+//URPO部門
 var urpoUserSchema = new mongoose.Schema({
     name: String,
     username: String,

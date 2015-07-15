@@ -1,57 +1,57 @@
 var mongoose = require('mongoose');
 
-var ProjectOwnerSchema = new mongooes.Schema({
-    Project Owner (Delta): String,
+var ProjectOwnerSchema = new mongoose.Schema({
+    Name: String,
     EmpID: String
 });
 
-var FileSchema = new mongooes.Schema({
+var FileSchema = new mongoose.Schema({
     file_name: String,
-    path: String
+    file_path: String
 });
 
-var MilestoneSchema = new mongooes.Schema({
+var MilestoneSchema = new mongoose.Schema({
     name: String,
     start_time: { type: Date, default: Date.now },
     end_time: { type: Date, default: Date.now },
     status: String,
-    description: String
+    description: String,
     file: [FileSchema]
 });
 
-var PrincipalInvestigatorSchema = new mongooes.Schema({
-    Principal Investigator: String,
-    Email Address: String,
-    Personal Website: String
+var PrincipalInvestigatorSchema = new mongoose.Schema({
+    Name: String,
+    Email: String,
+    Website: String
 });
 
-var EditStateSchema = new mongooes.Schema({
-    add or edit: String,
+var EditStateSchema = new mongoose.Schema({
+    add_or_edit: String,
     edit_person: String,
     edit_column: String
 });
 
 var ProjectSchema = new mongoose.Schema({
-    status: String,
+    id: String,
     Category: String,
-    Dept./ Team: String,
-    Project Name: String,
-    Project Description: String,
-    Estimated Start Date: { type: Date, default: Date.now },
-    Estimated End Date: { type: Date, default: Date.now },
-    Project Owner: [ProjectOwnerSchema],
-    milestone: [MilestoneSchema],
+    Dept: String,
+    Project_Name: String,
+    Project_Description: String,
+    Estimated_Start_Date: { type: Date, default: Date.now },
+    Estimated_End_Date: { type: Date, default: Date.now },
     Region: String,
     Institution: String,
     Competence: String,
-    Principal Investigator: [PrincipalInvestigatorSchema],
-    Collaboration Model: String,
-    Project Agreement Status: String,
+    Collaboration_Model: String,
+    Project_Agreement_Status: String,
     Currency: String,
-    Cash Funding: String,
-    memo: String,
+    Cash_Funding: String,
+    Project_Owners: [ProjectOwnerSchema],
+    Principal_Investigators: [PrincipalInvestigatorSchema],
+    Milestone: [MilestoneSchema],
     edit_state: [EditStateSchema],
-    file system: {}
+    memo: String,
+    file_system: {}
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);
