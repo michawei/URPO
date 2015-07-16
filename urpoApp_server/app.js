@@ -67,7 +67,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-mongoose.connect('mongodb://localhost/urpoApp:server', function(err) {
+mongoose.connect('mongodb://127.0.0.1/urpoApp:server', function(err) {
   if(err) {
     console.log('mongodb connection error', err);
   } else {
