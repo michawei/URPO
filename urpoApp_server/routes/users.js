@@ -8,6 +8,10 @@ router.get('/', function(req, res, next) {
     res.send('respond with a resource');
 });
 
+// router.get('/', function(req, res, next) {
+//     res.render('chatroom', { title: 'Express' });
+// });
+
 /* 登入頁面 */
 router.get('/login', function(req, res, next) {
     var username = req.body.username;
