@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var filter = require('../models/FilterUse.js');
 
 /* GET filter listing. */
+/* 搜尋頁面 */
 router.get('/', function(req, res, next) {
   filter.find(function (err, data) {
     if (err) return next(err);
