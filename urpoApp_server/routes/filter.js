@@ -31,17 +31,21 @@ router.get('/sample', function(req, res) {
 
 router.put('/data:id', function(req, res, next) {
 	console.log(req.body);//55a7b00008eb70364525fe1c
-	//console.log(req.params.id);
-	Data = {
-		Category: ["GIS", "TALA"], 
-		Dept: ["URPO", "LED", "Life Science", "F"], 
-		Region: ["Taiwan", "USA", "Japan", "China"], 
-		Institution: ["NCKU", "NTU", "NCTU"], 
-		Project_Agreement_Status: ["A", "B", "c", "D", "e", "F"], 
-		Project_Owners: ["Andy", "Ben", "Brian", "jimmy", "Alice", "Folder"], 
-		Principal_Investigators: ["Peter", "Jerry", "Ken", "AD", "Eillfd", "Fred"]
-	};
-	filter.findByIdAndUpdate('55a7b00008eb70364525fe1c', Data, function(err, post) {
+
+	//拿到ID
+	var tmp = req.params.id.substring(1, req.params.id.length);
+
+	// Data = {
+	// 	Category: ["GIS", "TALA"], 
+	// 	Dept: ["URPO", "LED", "Life Science", "F"], 
+	// 	Region: ["Taiwan", "USA", "Japan", "China"], 
+	// 	Institution: ["NCKU", "NTU", "NCTU"], 
+	// 	Project_Agreement_Status: ["A", "B", "c", "D", "e", "F"], 
+	// 	Project_Owners: ["Andy", "Ben", "Brian", "jimmy", "Alice", "Folder"], 
+	// 	Principal_Investigators: ["Peter", "Jerry", "Ken", "AD", "Eillfd", "Fred"]
+	// };
+
+	filter.findByIdAndUpdate(tmp, req.body, function(err, post) {
 		if (err) return next(err);
 		res.json(post);
 	})
