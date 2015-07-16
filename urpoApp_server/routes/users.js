@@ -8,10 +8,15 @@ router.get('/', function(req, res, next) {
     res.send('respond with a resource');
 });
 
+// router.get('/', function(req, res, next) {
+//     res.render('chatroom', { title: 'Express' });
+// });
+
+/* 登入頁面 */
 router.get('/login', function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
-    
+
     var user_query = urpo_user.find({ 'username' : username });
     user_query.push(/*go look in the PM data base and set urpo_query to that*/);
     if(user_query.length <= 0) {
