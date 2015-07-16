@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -66,5 +67,12 @@ app.use(function(err, req, res, next) {
   });
 });
 
+mongoose.connect('mongodb://localhost/urpoApp:server', function(err) {
+  if(err) {
+    console.log('mongodb connection error', err);
+  } else {
+    console.log('mongodb connection successful');
+  }
+});
 
 module.exports = app;
