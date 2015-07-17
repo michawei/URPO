@@ -63,7 +63,7 @@ router.get('/:id', function(req, res, next) {
 
 /* Add/Edit頁面 */
 router.post('/', function(req, res, next) {
-	draft.create(req.body, function(err, post) {
+	draft.create(req.body, function (err, post) {
 		if (err) return next(err);
 		res.json(post);
 	})
@@ -79,7 +79,7 @@ router.put('/:id', function(req, res, next) {
 
 /* Add/Edit頁面 */
 router.delete('/:id', function(req, res, next) {
-	draft.findByIdAndRemove(req.params.id, req.body, function(err, post) {
+	draft.findByIdAndRemove(req.params.id, req.body, function (err, post) {
 		if (err) return next(err);
 		res.json(post);
 	})

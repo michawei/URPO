@@ -4,13 +4,16 @@ var mongoose = require('mongoose');
 var urpo_user = require('../models/UrpoUser.js');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+/*router.get('/', function(req, res, next) {
     res.send('respond with a resource');
-});
+});*/
 
-// router.get('/', function(req, res, next) {
-//     res.render('chatroom', { title: 'Express' });
-// });
+router.get('/', function(req, res, next) {
+  urpo_user.find(function (err, data) {
+    if (err) return next(err);
+    res.json(data);
+  });  
+});
 
 /* 登入頁面 */
 router.get('/login', function(req, res, next) {
@@ -32,6 +35,13 @@ router.get('/login', function(req, res, next) {
     		res.json({ success : user });
     	}
     }
+});
+
+router.post('/', function(req, res, next) {
+    urpo_user.create(req.body, function(err, post) {
+        if (err) return next(err);
+        res.json(post);
+    })
 });
 
 module.exports = router;

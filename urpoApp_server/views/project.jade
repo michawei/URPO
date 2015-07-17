@@ -14,7 +14,7 @@ block content
 			document.getElementById('chat_display').scrollTop = document.getElementById('chat_display').scrollHeight;
 		});*/
 		$(function(){
-			/*var project_list = [
+			var project_list = [
 				{'Category': 'URPO', 'id': '00000', 'Cash_Funding': '', 'Project_Agreement_Status': '2 NDA Signed', 'Competence': '', 'edit_state': [{'edit_column': 'Project_Description', 'edit_person': '林岳暉', 'add_or_edit': 'edit'}], 'Estimated_Start_Date': '', 'Currency': 'NTD', 'Project_Name': '', 'memo': 'Hello world!!!', 'Institution': 'CMU 中國醫藥大學', 'Principal_Investigators': [{'Email': 'T17988@mail.cmuh.org.tw', 'Website': '', 'Name': '邱俊誠'}], 'file_system': [], 'Project_Description': '', 'Edit_Date': '', 'Estimated_End_Date': '', 'Project_Owners': [{'EmpID': '622828', 'Name': '林岳暉'}], 'Milestone': [], 'Collaboration_Model': '0 Undecided', 'Region': 'Taiwan', 'Dept': 'Life Science'},
 				{'Category': '', 'id': '00001', 'Cash_Funding': '1003692', 'Project_Agreement_Status': '3 Project Agreement Under Negotiation', 'Competence': '', 'edit_state': [{'edit_column': 'Cash_Funding', 'edit_person': '鍾佩蓉', 'add_or_edit': 'edit'}], 'Estimated_Start_Date': '2015/01/01', 'Currency': 'NTD', 'Project_Name': '『同時定位與地圖建立系統』之技術授權', 'memo': 'Hello world!!!', 'Institution': 'ITRI 工業研究院', 'Principal_Investigators': [{'Email': 'ywkao@itri.org.tw', 'Website': '', 'Name': '高永威'}], 'file_system': [], 'Project_Description': '1. 依據雙方於民國 103 年 9 月 1 日簽署之合作研究協議書第三條『B型態』之『技術授權』合作模式 乙方同意依本條規定將授權標的授權與被授權人 約定如下:<br>2. 授權標的：係指『同時定位與地圖建立系統』之技術 其具體內容為本子約第四條各項之交付物及/或交付事項所表彰之所有智慧財產權。<br>3. 被授權人：乙方同意將本授權標的非專屬授權甲方及甲方依我國法令設立登記之關係企業使用及實施之權利 授權有效期間自底頁簽約日起十年。<br>4. 乙方理解並同意：前項被授權人製造、授權他人製造、販賣、要約銷售、經銷、進出口內含本授權標的之產品或服務 無需另行取得乙方之同意 甲方暨其關聯企業均可自行為之。<br>5. 除本條第三項之被授權人外 甲方不得將其在本契約中之權利再授權予第三人。', 'Estimated_End_Date': '2015/12/31', 'Project_Owners': [{'EmpID': '', 'Name': '鍾佩蓉'}], 'Milestone': [], 'Collaboration_Model': '2 Targeted Research - Funding Support', 'Region': 'Taiwan', 'Dept': ''},
 				{'Category': 'URPO', 'id': '00002', 'Cash_Funding': '307618', 'Project_Agreement_Status': '4 Project Agreement Signed', 'Competence': '', 'edit_state': [{'edit_column': 'Collaboration_Model', 'edit_person': '陳昱達', 'add_or_edit': 'edit'}], 'Estimated_Start_Date': '2015/01/01', 'Currency': 'NTD', 'Project_Name': '應用自動特徵擷取之影像辨識技術開發', 'memo': 'Hello world!!!', 'Institution': 'ITRI 工業研究院', 'Principal_Investigators': [{'Email': 'myshih@itri.org.tw', 'Website': '', 'Name': '石明于'}], 'file_system': [], 'Project_Description': '本計畫主要之分工方式 將由台達電負責提供廠區監控視訊中人員影像之機器學習訓練及測試資料 工研院負責技術之研發 主要研發目標為人員偵測、人員部位定位(頭部/上半身/下半身)、人員服裝特徵偵測包含類型(短袖、長袖、背心、外套)。', 'Estimated_End_Date': '2015/12/31', 'Project_Owners': [{'EmpID': '642713', 'Name': '陳昱達'}], 'Milestone': [{'file': [{'file_name': 'tmp.txt', 'file_path': '/dir1/dir2/tmp.txt'}], 'status': '', 'milestone': true, 'description': '', 'end_time': 'Planning', 'cash_funding': '', 'name': 'Planning', 'start_time': 'Planning'}], 'Collaboration_Model': '2 Targeted Research - Funding Support', 'Region': 'Taiwan', 'Dept': 'IoT'},
@@ -160,40 +160,14 @@ block content
 				{'Category': 'URPO', 'id': '00142', 'Cash_Funding': '', 'Project_Agreement_Status': '4 Project Agreement Signed', 'Competence': '', 'edit_state': [{'edit_column': 'Project_Name', 'edit_person': '張景裕', 'add_or_edit': 'edit'}], 'Estimated_Start_Date': '', 'Currency': 'SGD', 'Project_Name': 'Micro-Kit', 'memo': 'Hello world!!!', 'Institution': 'NTU (Nanyang Technological University)', 'Principal_Investigators': [{'Email': '', 'Website': '', 'Name': 'Erich Christian Elkins'}], 'file_system': [], 'Project_Description': '', 'Edit_Date': '', 'Estimated_End_Date': '', 'Project_Owners': [{'EmpID': '', 'Name': '張景裕'}], 'Milestone': [], 'Collaboration_Model': '4 Targeted Research - Corporate Lab', 'Region': '', 'Dept': 'IoT'},
 				{'Category': '', 'id': '00143', 'Cash_Funding': '', 'Project_Agreement_Status': '', 'Competence': '', 'edit_state': [{'edit_column': 'Category', 'edit_person': '', 'add_or_edit': 'edit'}], 'Estimated_Start_Date': '', 'Currency': '', 'Project_Name': '', 'memo': 'Hello world!!!', 'Institution': 'NTU (Nanyang Technological University)', 'Principal_Investigators': [{'Email': '', 'Website': '', 'Name': 'Erich Christian Elkins'}], 'file_system': [], 'Project_Description': '', 'Edit_Date': '', 'Estimated_End_Date': '', 'Project_Owners': [], 'Milestone': [], 'Collaboration_Model': '', 'Region': '', 'Dept': ''},
 				{'Category': '', 'id': '00144', 'Cash_Funding': '', 'Project_Agreement_Status': '3 Project Agreement Under Negotiation', 'Competence': '', 'edit_state': [{'edit_column': 'Estimated_End_Date', 'edit_person': '周清和', 'add_or_edit': 'edit'}], 'Estimated_Start_Date': '2014/01/01', 'Currency': 'NTD', 'Project_Name': '具誘魚光型與可調變波長LED水下集魚燈具之研發', 'memo': 'Hello world!!!', 'Institution': 'NCKU 成功大學', 'Principal_Investigators': [{'Email': '', 'Website': '', 'Name': '沈聖智'}], 'file_system': [], 'Project_Description': '', 'Edit_Date': '', 'Estimated_End_Date': '2014/12/31', 'Project_Owners': [{'EmpID': '', 'Name': '周清和'}], 'Milestone': [], 'Collaboration_Model': '2 Targeted Research - Funding Support', 'Region': 'Taiwan', 'Dept': ''}
-			];*/
-			/*var URPO = [
-			{
-				"name": "URPO",
-				"username": "urpo",
-				"password": "81dc9bdb52d04dc20036dbd8313ed055",
-				"EMPID": "00001", 
-				"search_history": [
-					{
-						"search_condition": "台灣大學|taiwan|2015/01/01~2015/07/07",
-						"date": "2015-07-11T16:10:06.520Z"
-					},
-					{
-						"search_condition": "林|IOT",
-						"date": "2015-07-08T06:04:21.411Z"
-					},
-					{
-						"search_condition": "k8Ddcc0@gmail.com|RMB",
-						"date": "2015-07-11T08:27:54.337Z"
-					}
-				],
-				"Profile": "http://www.csie.ntu.edu.tw/~b01902068/img/forest2.jpg", 
-				"memo": "This is a Demo memo", 
-				"Draft_ID": [],
-				"role": 'URPO'
-			}];*/
+			];
 			$('#click').click(function(){
 				// send data to todos
-				//console.log(URPO);
-				//$.post("http://localhost:3000/users", URPO[0]);
-				/*$.each(project_list, function (index, value){
+				console.log(project_list);
+				$.each(project_list, function (index, value){
 					console.log(value);
 					$.post("http://localhost:3000/project", value);
-				})*/
+				})
 			});
 		});
 
