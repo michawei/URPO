@@ -12,7 +12,7 @@
         editUrl: "bridges/php/handler.php",
         getContentUrl: "/api/getContent",
         createFolderUrl: "/api/mkdir",
-        downloadFileUrl: "bridges/php/handler.php",
+        downloadFileUrl: "/api/download",
         compressUrl: "bridges/php/handler.php",
         extractUrl: "bridges/php/handler.php",
         permissionsUrl: "bridges/php/handler.php",

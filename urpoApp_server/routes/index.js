@@ -98,6 +98,16 @@ router.post('/api/getContent', function(req, res) {
 	});
 });
 
+router.get('/api/download', function(req, res) {
+	/*
+		get?mode=download&preview=true&path=/public_html/image.jpg
+	*/
+	var _p = path.join(__dirname, '..', 'node_modules', req.query.path);
+	console.log(_p);
+	res.sendFile(_p);
+
+});
+
 router.post('/api/resource', function(req, res) {
 	res.send(fs.readFileSync(req.query.resource, 'UTF-8'));
 });
