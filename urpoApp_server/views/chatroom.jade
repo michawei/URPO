@@ -22,7 +22,7 @@ html
           console.log(data);
           $.each(data, function(key, val) {
             console.log(val);
-            $('#outputData').append($('<li class="history">').text(val.note));
+            $('#outputData').append($('<li class="history">').text(key));
           });
         });
       }
@@ -41,7 +41,7 @@ html
             message += '\t(' + h + ':'+ m + ':' + s + ')' + '\n';
             //socket.emit('chat message', message);
             $('#inputData').val('');
-            $.post("/filter/data", {Category: ["A", "B", "C", "D", "E", "F"], Dept: ["URPO", "LED", "URPO", "URPO", "LED", "F"], Region: ["Taiwan", "USA", "Taiwan", "Taiwan", "Taiwan", "Taiwan"], Institution: ["NTU", "NTU", "NTU", "NTU", "NTU", "NCTU"], Project_Agreement_Status: ["A", "B", "A", "D", "A", "F"], Project_Owners: ["Andy", "Ben", "Ben", "Ben", "Ben", "Folder"], Principal_Investigators: ["Peter", "Jerry", "Ken", "AD", "Eillfd", "Fred"]});
+            $.post("/filter/data:55a7d2fad613b2e15ef7f892", {Category: "IOT", Dept: "Tech", Region: "Russia", Institution: "NTNU", Project_Agreement_Status: "A+", Project_Owners: "Zax", Principal_Investigators: "Peterson"});
           }
         }
         return false;
