@@ -90,7 +90,7 @@ router.post('/api/getContent', function(req, res) {
 		}}
 	*/
 	var _p = path.join(__dirname, '..', 'node_modules', req.body.params.path);
-	fs.readFile(_p, 'utf8', function read(err, data) {
+	fs.readFile(_p, 'utf8', function(err, data) {
 		if (err) {
 			throw err;
 		}
@@ -102,14 +102,41 @@ router.get('/api/download', function(req, res) {
 	/*
 		get?mode=download&preview=true&path=/public_html/image.jpg
 	*/
-	var _p = path.join(__dirname, '..', 'node_modules', req.query.path);
-	console.log(_p);
+	var _p = path.join(__dirname, '..', 'node_modules', decodeURIComponent(req.query.path));
 	res.sendFile(_p);
 
 });
 
-router.post('/api/resource', function(req, res) {
-	res.send(fs.readFileSync(req.query.resource, 'UTF-8'));
+router.post('/api/upload', function(req, res) {
+	/*
+		------WebKitFormBoundaryqBnbHc6RKfXVAf9j
+		Content-Disposition: form-data; name="destination"
+		/
+		
+		------WebKitFormBoundaryqBnbHc6RKfXVAf9j
+		Content-Disposition: form-data; name="file-0"; filename="github.txt"
+		Content-Type: text/plain
+	*/
+	//var _p = path.join(__dirname, '..', 'node_modules', req.body.destination);
+	console.log(req.body);
+	res.json({ "result": { "success": true, "error": null } });  // assume successful !!!!!
+});
+
+router.post('/api/edit', function(req, res) {
+	/*
+	{ "params": {
+		"mode": "savefile",
+		"content": "<?php echo random(); ?>",
+		"path": "/public_html/index.php",
+	}}
+	*/
+	var _p = path.join(__dirname, '..', 'node_modules', req.body.params.path);
+	fs.writeFile(_p, req.body.params.content, function(err) {
+		if (err) {
+			throw err;
+		}
+		res.json({ "result": { "success": true, "error": null } });  // assume successful !!!!!
+	});
 });
 
 function processReq(_p, res) {
