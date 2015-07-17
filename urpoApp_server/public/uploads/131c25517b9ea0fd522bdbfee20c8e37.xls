@@ -1,0 +1,18 @@
+
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Terms</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ngRepeat: item in items|filter:{selected: true} --><tr ng-repeat="item in items|filter:{selected: true}" class="ng-scope">
+                    <td class="ng-binding">ANC101</td>
+                    <td class="ng-binding">10/02/2014</td>
+                    <td><!-- ngRepeat: term in item.Terms --><span ng-repeat="term in item.Terms" class="ng-scope ng-binding">samsung, </span><!-- end ngRepeat: term in item.Terms --><span ng-repeat="term in item.Terms" class="ng-scope ng-binding">nokia, </span><!-- end ngRepeat: term in item.Terms --><span ng-repeat="term in item.Terms" class="ng-scope ng-binding">apple</span><!-- end ngRepeat: term in item.Terms --></td>
+                </tr><!-- end ngRepeat: item in items|filter:{selected: true} -->
+            </tbody>
+        </table>
+    

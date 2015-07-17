@@ -4,6 +4,9 @@ var fs = require('fs');
 var path = require('path');
 var bodyParser = require('body-parser');
 var colors = require('colors');
+var multer  = require('multer');
+
+router.use(multer({ dest: './public/uploads/'}));
 
 // parse application/x-www-form-urlencoded
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -108,18 +111,10 @@ router.get('/api/download', function(req, res) {
 });
 
 router.post('/api/upload', function(req, res) {
-	/*
-		------WebKitFormBoundaryqBnbHc6RKfXVAf9j
-		Content-Disposition: form-data; name="destination"
-		/
-		
-		------WebKitFormBoundaryqBnbHc6RKfXVAf9j
-		Content-Disposition: form-data; name="file-0"; filename="github.txt"
-		Content-Type: text/plain
-	*/
-	//var _p = path.join(__dirname, '..', 'node_modules', req.body.destination);
+	console.log('uploading');
 	console.log(req.body);
-	res.json({ "result": { "success": true, "error": null } });  // assume successful !!!!!
+	console.log(req.files);
+	res.end();
 });
 
 router.post('/api/edit', function(req, res) {
@@ -139,14 +134,18 @@ router.post('/api/edit', function(req, res) {
 	});
 });
 
+
+
 function processReq(_p, res) {
 	var resp = [];
-	fs.readdir(_p, function(err, list) {
-		for (var i = list.length - 1; i >= 0; i--) {
-			resp.push(processNode(_p, list[i]));
-		}
-		res.json(resp);
-	});
+	//if(list != undefined) {
+		fs.readdir(_p, function(err, list) {
+			for (var i = list.length - 1; i >= 0; i--) {
+				resp.push(processNode(_p, list[i]));
+			}
+			res.json(resp);
+		});
+  //}
 }
 
 function processNode(_p, f) {
