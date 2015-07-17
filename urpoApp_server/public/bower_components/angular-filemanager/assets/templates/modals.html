@@ -221,7 +221,7 @@
             </div>
             <div class="modal-body">
               <label class="radio">{{"files_will_uploaded_to" | translate}} <b>{{fileNavigator.currentPath.join('/')}}</b></label>
-              <input type="file" class="form-control" data-ng-file="$parent.uploadFileList" autofocus="autofocus" multiple="multiple"/>
+              <input type="file" class="form-control" ngf-select ng-model="$parent.uploadFileList" autofocus="autofocus" multiple="multiple"/>
               <div data-ng-include data-src="'error-bar'" class="clearfix"></div>
             </div>
             <div class="modal-footer">

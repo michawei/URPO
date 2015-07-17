@@ -5,7 +5,7 @@
         defaultLang: "en",
 
         listUrl: "/api/list",
-        uploadUrl: "bridges/php/handler.php",
+        uploadUrl: "/api/upload",
         renameUrl: "/api/mv",
         copyUrl: "/api/cp",
         removeUrl: "/api/rm",

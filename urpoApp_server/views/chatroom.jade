@@ -1,0 +1,75 @@
+doctype html
+html
+  head
+    title Chatroom
+    | &#x9;&#x9;
+    link(rel='stylesheet', type='text/css', href='stylesheets/main.css')
+    | &#x9;&#x9;
+    script(type='text/javascript', src='js/jquery-2.1.4.min.js')
+    | &#x9;&#x9;
+    script(type='text/javascript').
+      //加上enter事件，自動送出
+      $(function() {
+        $("#messageDiv input").keypress(function(event) {       
+          if (event.keyCode == 13) getValue();
+        });
+      });
+
+      //var socket = io();
+
+      function loadData() {
+        $.get("/filter/sample", function(data) {
+          console.log(data);
+          $.each(data, function(key, val) {
+            console.log(val);
+            $('#outputData').append($('<li class="history">').text(key));
+          });
+        });
+      }
+      function getValue() {
+        if (!$('#nameData').val()) {
+          alert("Please enter your name!");
+        }
+        else {
+          if ($('#inputData').val()) {
+            var message = document.getElementById('nameData').value + ": ";
+            message += $('#inputData').val();
+            var NowDate = new Date();
+            var h = NowDate.getHours();
+            var m = NowDate.getMinutes();
+            var s = NowDate.getSeconds();　
+            message += '\t(' + h + ':'+ m + ':' + s + ')' + '\n';
+            //socket.emit('chat message', message);
+            $('#inputData').val('');
+            $.post("/filter/data:55a7d2fad613b2e15ef7f892", {Category: "IOT", Dept: "Tech", Region: "Russia", Institution: "NTNU", Project_Agreement_Status: "A+", Project_Owners: "Zax", Principal_Investigators: "Peterson"});
+          }
+        }
+        return false;
+      }
+      //- socket.on('chat message', function(msg){
+      //-   $('#outputData').append($('<li>').text(msg));
+      //- });
+
+      function setValue() {
+        $('#inputData').val('Wonderful chatroom ^__^');
+      }
+  | &#x9;
+  body(onload="loadData()")
+    h1#myHeader.header(onclick='setValue()') ChatRoom
+    | &#x9;&#x9;
+    span
+      label Your Name:
+      | &#x9;&#x9;&#x9;
+      input#nameData(type='text')
+    | &#x9;&#x9;
+    hr
+    | &#x9;&#x9;&#x9;
+    div#messageDiv()
+      ul#outputData()
+      | &#x9;&#x9;&#x9;&#x9;
+      input#inputData(type='text')
+      | &#x9;&#x9;&#x9;&#x9;
+      br
+      | &#x9;&#x9;&#x9;&#x9;
+      button#msgBtn(onclick='getValue()') Submit!
+

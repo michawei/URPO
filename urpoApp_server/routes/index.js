@@ -4,6 +4,9 @@ var fs = require('fs');
 var path = require('path');
 var bodyParser = require('body-parser');
 var colors = require('colors');
+var multer  = require('multer');
+
+router.use(multer({ dest: './public/uploads/'}));
 
 // parse application/x-www-form-urlencoded
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -108,18 +111,27 @@ router.get('/api/download', function(req, res) {
 
 });
 
+router.post('/api/upload', function(req, res) {
+	console.log('uploading');
+	console.log(req.body);
+	console.log(req.files);
+	res.end();
+});
+
 router.post('/api/resource', function(req, res) {
 	res.send(fs.readFileSync(req.query.resource, 'UTF-8'));
 });
 
 function processReq(_p, res) {
 	var resp = [];
-	fs.readdir(_p, function(err, list) {
-		for (var i = list.length - 1; i >= 0; i--) {
-			resp.push(processNode(_p, list[i]));
-		}
-		res.json(resp);
-	});
+	//if(list != undefined) {
+		fs.readdir(_p, function(err, list) {
+			for (var i = list.length - 1; i >= 0; i--) {
+				resp.push(processNode(_p, list[i]));
+			}
+			res.json(resp);
+		});
+  //}
 }
 
 function processNode(_p, f) {

@@ -1,8 +1,8 @@
 (function(window, angular, $) {
     "use strict";
     angular.module('FileManagerApp').controller('FileManagerCtrl', [
-    '$scope', '$translate', '$cookies', 'fileManagerConfig', 'item', 'fileNavigator', 'fileUploader',
-    function($scope, $translate, $cookies, fileManagerConfig, Item, FileNavigator, FileUploader) {
+    '$scope', '$translate', '$cookies', 'fileManagerConfig', 'item', 'fileNavigator', 'fileUploader', 'Upload',
+    function($scope, $translate, $cookies, fileManagerConfig, Item, FileNavigator, FileUploader, Upload) {
 
         $scope.config = fileManagerConfig;
         $scope.appName = fileManagerConfig.appName;
