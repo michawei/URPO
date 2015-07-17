@@ -21,7 +21,8 @@ router.get('/sample', function(req, res) {
 		Category: ["Lo", "B", "C", "D"], 
 		Dept: ["URPO", "LED", "Life Science", "F"], 
 		Region: ["Taiwan", "USA", "Japan", "China"], 
-		Institution: ["NCKU", "NTU", "NCTU"], 
+		Institution: ["NCKU", "NTU", "NCTU"],
+		Collaboration_Model: ["2 Targeted Research - Funding Support"],
 		Project_Agreement_Status: ["A", "B", "c", "D", "e", "F"], 
 		Project_Owners: ["Andy", "Ben", "Brian", "jimmy", "Alice", "Folder"], 
 		Principal_Investigators: ["Peter", "Jerry", "Ken", "AD", "Eillfd", "Fred"]

@@ -11,7 +11,7 @@ var FilterUseSchema = new mongoose.Schema({
     Region: [String],
     Institution: [String],
     //Competence: String,
-    //Collaboration_Model: [String],
+    Collaboration_Model: [String],
     Project_Agreement_Status: [String],
     //Currency: [String],
     //Cash_Funding: String,
