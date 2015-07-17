@@ -13,7 +13,7 @@ router.get('/data', function(req, res, next) {
   filter.find(function (err, data) {
     if (err) return next(err);
     res.json(data);
-  });  
+  });
 });
 
 router.get('/sample', function(req, res) {
@@ -30,7 +30,7 @@ router.get('/sample', function(req, res) {
 });
 
 router.put('/data:id', function(req, res, next) {
-	console.log(req.body);//55a7b00008eb70364525fe1c
+	console.log(req.body);
 
 	//拿到ID
 	var tmp = req.params.id.substring(1, req.params.id.length);
@@ -51,7 +51,7 @@ router.put('/data:id', function(req, res, next) {
 	})
 });
 
-/* 搜尋頁面的filter部分 */
+/* 搜尋頁面的filter部分
 router.post('/data:id', function(req, res, next) {
 	console.log(req.body);
 	
@@ -74,10 +74,10 @@ router.post('/data:id', function(req, res, next) {
 			//console.log(data[0][Key[i]]);
 		}
 		console.log("After");
-		console.log(data);
 		//目前更新不了
 		filter.findByIdAndUpdate(tmp, data, function(err, post) {
 			if (err) return next(err);
+			console.log(data);
 			res.json(post);
 		})
 	});
@@ -86,6 +86,6 @@ router.post('/data:id', function(req, res, next) {
 	// 	if (err) return next(err);
 	// 	res.json(post);
 	// })
-});
+});*/
 
 module.exports = router;
