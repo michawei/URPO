@@ -29,14 +29,12 @@ router.put('/:id', function(req, res, next) {
 });
 
 /* Add/Edit頁面 */
-/*
 router.post('/', function(req, res, next) {
 	project.create(req.body, function(err, post) {
 		if (err) return next(err);
 		res.json(post);
 	})
 });
-*/
 
 /* project頁面, Add/Edit頁面 */
 router.delete('/:id', function(req, res, next) {
