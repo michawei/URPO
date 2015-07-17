@@ -67,12 +67,16 @@ app.use(function(err, req, res, next) {
   });
 });
 
-mongoose.connect('mongodb://127.0.0.1/urpoApp:server', function(err) {
-  if(err) {
-    console.log('mongodb connection error', err);
-  } else {
-    console.log('mongodb connection successful');
-  }
+/* initial mongoose */
+
+mongoose.connect('mongodb://localhost/urpoApp:server', function(err) {
+    if(err) {
+        console.log('mongodb connection error', err);
+    } else {
+        /* Warning -- Use to delete database */
+        //mongoose.connection.db.dropDatabase();
+        console.log('mongodb connection successful');
+    }
 });
 
 module.exports = app;

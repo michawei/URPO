@@ -17,7 +17,7 @@ var MilestoneSchema = new mongoose.Schema({
     status: String,
     description: String,
     cash_funding: String,
-    milestone: Boolean,
+    milestone: Boolean, // 是否為milestone
     file: [FileSchema]
 });
 
@@ -39,6 +39,7 @@ var ProjectSchema = new mongoose.Schema({
     Dept: String,
     Project_Name: String,
     Project_Description: String,
+    Edit_Date: { type: Date, default: Date.now },
     Estimated_Start_Date: String,
     Estimated_End_Date: String,
     Region: String,
@@ -53,7 +54,7 @@ var ProjectSchema = new mongoose.Schema({
     Milestone: [MilestoneSchema],
     edit_state: [EditStateSchema],
     memo: String,
-    file_system: {}
+    file_system: []
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);
