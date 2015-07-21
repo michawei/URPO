@@ -11,4 +11,36 @@ router.get('/', function(req, res, next) {
   });  
 });
 
+/* GET /header/:name 某個name的服務 */
+router.get('/:name', function(req, res, next) {
+  //console.log(req.params);
+  pm.find({ 'name': req.params.name }, function (err, data) {
+  	//console.log(err)
+    if (err) return next(err);
+    res.json(data[0]);
+  });
+});
+
+/* Add/Edit頁面 */
+router.post('/', function(req, res, next) {
+	pm.create(req.body, function (err, post) {
+		if (err) return next(err);
+		res.json(post);
+	})
+});
+
+router.put('/:id', function(req, res, next) {
+	pm.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+		if (err) return next(err);
+		res.json(post);
+	})
+});
+
+router.delete('/:id', function(req, res, next) {
+	pm.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+		if (err) return next(err);
+		res.json(post);
+	})
+});
+
 module.exports = router;

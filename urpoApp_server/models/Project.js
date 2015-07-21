@@ -54,7 +54,7 @@ var ProjectSchema = new mongoose.Schema({
     Milestone: [MilestoneSchema],
     edit_state: [EditStateSchema],
     memo: String,
-    file_system: []
+    file_system: {}
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);

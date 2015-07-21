@@ -12,11 +12,11 @@ router.get('/', function(req, res, next) {
   urpo_user.find(function (err, data) {
     if (err) return next(err);
     res.json(data);
-  });  
+  });
 });
 
 /* 登入頁面 */
-router.get('/login', function(req, res, next) {
+router.post('/login', function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
 
