@@ -5,20 +5,18 @@ var pm = require('../models/ProjectManager.js');
 
 /* GET pm listing. */
 router.get('/', function(req, res, next) {
-  pm.find(function (err, data) {
-    if (err) return next(err);
-    res.json(data);
-  });  
+	pm.find(function (err, data) {
+		if (err) return next(err);
+		res.json(data);
+	});  
 });
 
 /* GET /header/:name 某個name的服務 */
 router.get('/:name', function(req, res, next) {
-  //console.log(req.params);
-  pm.find({ 'name': req.params.name }, function (err, data) {
-  	//console.log(err)
-    if (err) return next(err);
-    res.json(data[0]);
-  });
+	pm.find({ 'name': req.params.name }, function (err, data) {
+		if (err) return next(err);
+		res.json(data[0]);
+	});
 });
 
 /* Add/Edit頁面 */

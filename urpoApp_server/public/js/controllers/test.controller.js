@@ -199,9 +199,9 @@ angular.module('urpoApp').controller('testCtrl', ['$scope', '$http', function($s
 		//$http.post('/users', $scope.URPO);
 
 		//Fail : login message
-		/*$http.post("/users/login", body).success(function (data){
+		$http.get("/users/login", body).success(function (data){
 			console.log(data);
-		});*/
+		});
 		
 		// Use to post to pm database
 		/*$http.get("/project").success(function(data){
@@ -245,9 +245,9 @@ angular.module('urpoApp').controller('testCtrl', ['$scope', '$http', function($s
 		});*/
 		
 		// Use to post to Filter
-		$http.get("/project").success(function(data){
+		/*$http.get("/project").success(function(data){
 
-			/*for ( var i=0 ; i < data.length ; i++){
+			for ( var i=0 ; i < data.length ; i++){
 
 				if ( !(data[i].Category in $scope.filter_Category) && data[i].Category!="" ){
 					$scope.filter_Category[data[i].Category] = true;
@@ -282,9 +282,9 @@ angular.module('urpoApp').controller('testCtrl', ['$scope', '$http', function($s
 			console.log($scope.filter_Principal_Investigators);
 			$http.post("/filter", {Category: [], Dept: [], Region: [], Institution: [], Collaboration_Model: [], Project_Agreement_Status: [], Project_Owners: [], Principal_Investigators: []}).success(function (filter_data){
 				$scope.tmp_filter_id = filter_data._id;
-			});*/
+			});
 
-		});
+		});*/
 	};
 
 	$scope.send_2 = function(){

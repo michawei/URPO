@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* 登入頁面 */
-router.post('/login', function(req, res, next) {
+router.get('/login', function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
 

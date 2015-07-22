@@ -7,10 +7,10 @@ var draft = require('../models/Draft.js');
 
 /* 個人頁面 */
 router.get('/', function(req, res, next) {
-  draft.find(function (err, data) {
-    if (err) return next(err);
-    res.json(data);
-  });  
+    draft.find(function (err, data) {
+        if (err) return next(err);
+        res.json(data);
+    });  
 });
 
 /* 個人頁面 */
