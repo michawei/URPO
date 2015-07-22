@@ -30,10 +30,8 @@ router.put('/:id', function(req, res, next) {
 
 /* Add/Edit頁面 */
 router.post('/', function(req, res, next) {
-	console.log(req.body);
 	project.create(req.body, function(err, post) {
 		if (err) return next(err);
-		console.log(post);
 		res.json(post);
 	})
 });

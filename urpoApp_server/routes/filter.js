@@ -5,16 +5,43 @@ var filter = require('../models/FilterUse.js');
 
 /* GET filter listing. */
 router.get('/', function(req, res, next) {
-    res.render('chatroom', { title: 'Express' });
+  filter.find(function (err, data) {
+    if (err) return next(err);
+    res.json(data);
+  });  
+});
+
+/* New filter */
+router.post('/', function(req, res, next) {
+	filter.create(req.body, function(err, post) {
+		if (err) return next(err);
+		res.json(post);
+	})
+});
+
+/* Update */
+router.put('/:id', function(req, res, next) {
+	filter.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+		if (err) return next(err);
+		res.json(post);
+	})
+});
+
+/* Delete */
+router.delete('/:id', function(req, res, next) {
+	filter.findByIdAndRemove(req.params.id, req.body, function(err, post) {
+		if (err) return next(err);
+		res.json(post);
+	})
 });
 
 /* 搜尋頁面 */
-router.get('/data', function(req, res, next) {
+/*router.get('/data', function(req, res, next) {
   filter.find(function (err, data) {
     if (err) return next(err);
     res.json(data);
   });
-});
+});*/
 
 router.get('/sample', function(req, res) {
 	_data = {

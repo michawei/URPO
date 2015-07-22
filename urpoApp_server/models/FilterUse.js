@@ -16,7 +16,7 @@ var FilterUseSchema = new mongoose.Schema({
     //Currency: [String],
     //Cash_Funding: String,
     Project_Owners: [String],
-    Principal_Investigators: [String],
+    Principal_Investigators: [String]
     //Milestone: [MilestoneSchema],
     //edit_state: [EditStateSchema],
     //memo: String,
