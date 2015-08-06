@@ -8,7 +8,7 @@ var searchHisSchema = new mongoose.Schema( {
 //URPO部門
 var urpoUserSchema = new mongoose.Schema({
     name: String,
-    username: String,
+    username: { type: String, unique: true },
     password: String,
     EMPID: String,
     search_history: [searchHisSchema],

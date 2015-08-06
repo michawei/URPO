@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var ProjectManagerSchema = new mongoose.Schema({
     name: String,
-    username: String,
+    username: { type: String, unique: true },
     password: String,
     EMPID: String,
     Project_ID: [String],

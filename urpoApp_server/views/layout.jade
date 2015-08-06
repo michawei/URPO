@@ -1,7 +1,15 @@
 doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+html(ng-app="urpoApp")
+	head
+		title=title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/vendor/bootstrap/dist/css/bootstrap.min.css')
+		script(type='text/javascript' src='vendor/jquery/dist/jquery.min.js')
+		script(type='text/javascript' src='/vendor/jquery-ui/jquery-ui.min.js')
+		script(type='text/javascript' src='/vendor/bootstrap/dist/js/bootstrap.min.js')
+		script(type='text/javascript' src='vendor/angular/angular.min.js')
+
+		script(src='js/urpo.js')
+		script(src='js/controllers/test.controller.js')
+	body
+		block content
