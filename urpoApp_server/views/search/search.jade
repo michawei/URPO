@@ -1,0 +1,271 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    script(src="http://code.jquery.com/jquery-1.10.2.js")
+    link(rel="stylesheet", href="vendor/bootstrap/dist/css/bootstrap.css")
+    link(rel="stylesheet", href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css")
+    link(rel="stylesheet", type="text/css", href="stylesheets/search.css")
+    link(rel="stylesheet", type="text/css", href="stylesheets/checkbox.css")
+    script(type="text/javascript", src="vendor/bootstrap/dist/js/bootstrap.js")
+    script(type="text/javascript", src="js/angular.js")
+    script(src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js")
+    script(src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular-resource.js")
+    script(src="http://code.jquery.com/ui/1.11.4/jquery-ui.js")
+    script(src="js/urpoApp.js")
+    script(type="text/javascript").
+      $(function (){
+      $.get("/filter/sample", function(data){
+      console.log(data);
+      })
+      })
+      $(function (){
+      $("#datepicker_start").datepicker({
+      maxDate: 0,
+      onClose: function (selectedDate) {
+      $("#datepicker_end").datepicker("option", "minDate", selectedDate);
+      }
+      });
+      $("#datepicker_end").datepicker({
+      maxDate: 0,
+      onClose: function (selectedDate) {
+      $("#datepicker_start").datepicker("option", "maxDate", selectedDate);
+      }
+      });
+      });
+  body(align="center")
+    br
+    div
+      input(type="text", ng-model="searchbox", placeholder="Search", style="width:500px")
+    div(ng-dropdown-multiselect="", options="example1data", selected-model="example1model")
+    // 狀態列
+    div
+      input#yellow(type="checkbox", name="hidden_box")
+      label.glyphicon.glyphicon-asterisk(for="yellow") &#27965;&#35527;&#20013;
+      input#red(type="checkbox", name="hidden_box")
+      label.glyphicon.glyphicon-asterisk(for="red") &#36914;&#34892;&#20013;
+      input#green(type="checkbox", name="hidden_box")
+      label.glyphicon.glyphicon-asterisk(for="green") &#32080;&#26696;
+      input#black(type="checkbox", name="hidden_box")
+      label.glyphicon.glyphicon-asterisk(for="black") &#26410;&#25104;&#21151;
+    br
+    table.table(ng-table="", style="width:80%", align="center", ng-app="urpoApp")
+      // 第一排
+      tr#checkbox(style="width:20%")
+        th
+          input(type="checkbox", ng-model="ck_time")
+          | &#26178;&#38291;
+        th
+          input(type="checkbox", ng-model="ck_cat")
+          | &#20998;&#39006;
+        th
+          input(type="checkbox", ng-model="ck_depart")
+          | &#37096;&#38272;
+        th
+          input(type="checkbox", ng-model="ck_school")
+          | &#23416;&#26657;
+        th
+          input(type="checkbox", ng-model="ck_professor")
+          | &#35336;&#30059;&#20027;&#25345;&#20154;
+      // 第二排
+      // 專案開始日期
+      tr
+        th
+          input#datepicker_start(type="text", placeholder="start date", ng-disabled="!ck_time")
+          br
+          input#datepicker_end(type="text", placeholder="end date", ng-disabled="!ck_time")
+        th
+          // 分類
+          div(ng-controller="ClientCtrl")
+            ul.inline
+              li
+                .btn-group(data-ng-class="{open: open}")
+                  a(data-ng-click="makesentence('Category')")
+                    button.btn.col-xs-9(ng-disabled="!ck_cat") {{sentence}}
+                    button.btn.dropdown-toggle.col-xs-3(data-ng-click="open=!open", ng-disabled="!ck_cat")
+                      span.caret
+                    ul.dropdown-menu(aria-labelledby="dropdownMenu")
+                      li
+                        a(data-ng-click="checkAll()")
+                          i.glyphicon.glyphicon-ok
+                          | Check All
+                      li
+                        a(data-ng-click="selectedCompany=[];")
+                          i.glyphicon.glyphicon-remove
+                          | Uncheck All
+                      li.divider
+                      li(data-ng-repeat="company in companyList")
+                        a(data-ng-click="setSelectedClient()")
+                          | {{company.name}}
+                          span(data-ng-class="isChecked(company.id)")
+        th
+          // 部門multi
+          div(ng-controller="ClientCtrl")
+            ul.inline
+              li
+                .btn-group(data-ng-class="{open: open}")
+                  a(data-ng-click="makesentence('Dept')")
+                    button.btn.col-xs-9(ng-disabled="!ck_depart") {{sentence}}
+                    button.btn.dropdown-toggle.col-xs-3(data-ng-click="open=!open", ng-disabled="!ck_depart")
+                      span.caret
+                    ul.dropdown-menu(aria-labelledby="dropdownMenu")
+                      li
+                        a(data-ng-click="checkAll()")
+                          i.glyphicon.glyphicon-ok
+                          | Check All
+                      li
+                        a(data-ng-click="selectedCompany=[];")
+                          i.glyphicon.glyphicon-remove
+                          | Uncheck All
+                      li.divider
+                      li(data-ng-repeat="company in companyList")
+                        a(data-ng-click="setSelectedClient()")
+                          | {{company.name}}
+                          span(data-ng-class="isChecked(company.id)")
+        th
+          // 學校
+          div(ng-app="urpoApp", data-ng-controller="ClientCtrl")
+            ul.inline
+              li
+                .btn-group(data-ng-class="{open: open}")
+                  a(data-ng-click="makesentence('Institution')")
+                    button.btn.col-xs-9(ng-disabled="!ck_school") {{sentence}}
+                    button.btn.dropdown-toggle.col-xs-3(data-ng-click="open=!open", ng-disabled="!ck_school")
+                      span.caret
+                    ul.dropdown-menu(aria-labelledby="dropdownMenu")
+                      li
+                        a(data-ng-click="checkAll()")
+                          i.glyphicon.glyphicon-ok
+                          | Check All
+                      li
+                        a(data-ng-click="selectedCompany=[];")
+                          i.glyphicon.glyphicon-remove
+                          | Uncheck All
+                      li.divider
+                      li(data-ng-repeat="company in companyList")
+                        a(data-ng-click="setSelectedClient()")
+                          | {{company.name}}
+                          span(data-ng-class="isChecked(company.id)")
+        th
+          // 計畫主持人
+          input(type="text", placeholder="name", ng-disabled="!ck_professor")
+      // 第三排
+      tr
+        th
+          input(type="checkbox", ng-model="ck_money")
+          | &#37329;&#38989;
+        th
+          input(type="checkbox", ng-model="ck_empid")
+          | EMPID
+        th
+          input(type="checkbox", ng-model="ck_owner")
+          | &#36000;&#36012;&#20154;
+        th
+          input(type="checkbox", ng-model="ck_region")
+          | &#21312;&#22495;
+        th
+      // 第四排
+      tr
+        // 金額
+        th
+          input(type="number", placeholder="from", ng-disabled="!ck_money")
+          br
+          input(type="number", placeholder="to", ng-disabled="!ck_money")
+        // EMPID
+        th
+          input(type="text", placeholder="EMPID", ng-disabled="!ck_empid")
+        // 負責人
+        th
+          input(type="text", placeholder="專案負責人", ng-disabled="!ck_owner")
+        // 區域multi
+        th
+          div(ng-app="urpoApp", data-ng-controller="ClientCtrl")
+            ul.inline
+              li
+                .btn-group(data-ng-class="{open: open}")
+                  a(data-ng-click="makesentence('Project_Owner')")
+                    button.btn.col-xs-9(ng-disabled="!ck_region") {{sentence}}
+                    button.btn.dropdown-toggle.col-xs-3(data-ng-click="open=!open", ng-disabled="!ck_region")
+                      span.caret
+                    ul.dropdown-menu(aria-labelledby="dropdownMenu")
+                      li
+                        a(data-ng-click="checkAll()")
+                          i.glyphicon.glyphicon-ok
+                          | Check All
+                      li
+                        a(data-ng-click="selectedCompany=[];")
+                          i.glyphicon.glyphicon-remove
+                          | Uncheck All
+                      li.divider
+                      li(data-ng-repeat="company in companyList")
+                        a(data-ng-click="setSelectedClient()")
+                          | {{company.name}}
+                          span(data-ng-class="isChecked(company.id)")
+        th
+      // 第五排
+      tr
+        th
+          input(type="checkbox", ng-model="ck_model")
+          | &#21512;&#20316;&#27169;&#24335;
+        th
+        th
+          input(type="checkbox", ng-model="ck_session")
+          | &#21512;&#20316;&#38542;&#27573;
+        th
+        th
+      // 第六排
+      tr
+        // 合作模式multi
+        th
+          div(ng-app="urpoApp", data-ng-controller="ClientCtrl")
+            ul.inline
+              li
+                .btn-group(data-ng-class="{open: open}")
+                  a(data-ng-click="makesentence('Collaboration_Model')")
+                    button.btn.col-xs-9(ng-disabled="!ck_model") {{sentence}}
+                    button.btn.dropdown-toggle.col-xs-3(data-ng-click="open=!open", ng-disabled="!ck_model")
+                      span.caret
+                    ul.dropdown-menu(aria-labelledby="dropdownMenu")
+                      li
+                        a(data-ng-click="checkAll()")
+                          i.glyphicon.glyphicon-ok
+                          | Check All
+                      li
+                        a(data-ng-click="selectedCompany=[];")
+                          i.glyphicon.glyphicon-remove
+                          | Uncheck All
+                      li.divider
+                      li(data-ng-repeat="company in companyList")
+                        a(data-ng-click="setSelectedClient()")
+                          | {{company.name}}
+                          span(data-ng-class="isChecked(company.id)")
+        th
+        th
+          div(ng-app="urpoApp", data-ng-controller="ClientCtrl")
+            ul.inline
+              li
+                .btn-group(data-ng-class="{open: open}")
+                  a(data-ng-click="makesentence('Project_Agreement_Status')")
+                    button.btn.col-xs-9(ng-disabled="!ck_session") {{sentence}}
+                    button.btn.dropdown-toggle.col-xs-3(data-ng-click="open=!open", ng-disabled="!ck_session")
+                      span.caret
+                    ul.dropdown-menu(aria-labelledby="dropdownMenu")
+                      li
+                        a(data-ng-click="checkAll()")
+                          i.glyphicon.glyphicon-ok
+                          | Check All
+                      li
+                        a(data-ng-click="selectedCompany=[];")
+                          i.glyphicon.glyphicon-remove
+                          | Uncheck All
+                      li.divider
+                      li(data-ng-repeat="company in companyList")
+                        a(data-ng-click="setSelectedClient()")
+                          | {{company.name}}
+                          span(data-ng-class="isChecked(company.id)")
+        th
+        th
+    // search buttons
+    input(type="button", value="search")
+    input(type="button", value="advanced search", ng-click="ADsearch=true")
+

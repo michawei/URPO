@@ -1,0 +1,106 @@
+body {
+    font-size: 27px;
+    font-family: Constantia, Cambria;
+    text-align: center;
+    background-color: #DDD;
+}
+
+table {
+	margin-left: auto;
+	margin-right: auto;
+	border: 2px solid black;
+    border-collapse: collapse;
+    width: 80%;
+
+
+}
+th {
+	font: 26px Cambria, Constantia;
+	border: 2px solid black;
+    border-collapse: collapse;
+    padding: 2px;
+    text-align: center;
+
+}
+td {
+	font: 24px Constantia, Cambria;
+	border: 2px solid black;
+    border-collapse: collapse;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+    text-align: center;
+    background-color: #EEE;
+}
+
+
+
+#selectAllBtn {
+    font: 20px Courier, skia, Constantia, Cambria;
+    width: 100px;
+    height: 35px;
+    margin-top: 20px;
+    padding: 2px;
+    color: yellow;
+    background-color: #111;
+}
+
+#selectAllBtn:hover {
+    position: relative;
+    top: 1px;
+    left: 1px;
+    outline: none !important; 
+    color: #111;
+    background-color: yellow;
+}
+
+#selectAllBtn:focus {
+    outline: none !important;
+}
+
+#unselectAllBtn {
+    font: 20px Courier, skia, Constantia, Cambria;
+    width: 100px;
+    height: 35px;
+    margin-top: 20px;
+    padding: 2px;
+    color: yellow;
+    background-color: #111;
+}
+
+#unselectAllBtn:hover {
+    position: relative;
+    top: 1px;
+    left: 1px;
+    outline: none !important; 
+    color: #111;
+    background-color: yellow;
+}
+
+#unselectAllBtn:focus {
+    outline: none !important;
+}
+
+#csvBtn {
+    font: 20px Courier, skia, Constantia, Cambria;
+    width: 100px;
+    height: 35px;
+    margin-top: 20px;
+    padding: 2px;
+    color: yellow;
+    background-color: #111;
+}
+
+#csvBtn:hover {
+    position: relative;
+    top: 1px;
+    left: 1px;
+    outline: none !important; 
+    color: #111;
+    background-color: yellow;
+}
+
+#csvBtn:focus {
+    outline: none !important;
+}
