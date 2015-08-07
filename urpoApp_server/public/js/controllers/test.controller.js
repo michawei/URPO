@@ -255,7 +255,7 @@ angular.module('urpoApp').controller('testCtrl', ['$scope', '$http', function($s
 		});*/
 		
 		// Use to post to Filter
-		$http.get("/project").success(function(data){
+		/*$http.get("/project").success(function(data){
 
 			for ( var i=0 ; i < data.length ; i++){
 
@@ -325,7 +325,7 @@ angular.module('urpoApp').controller('testCtrl', ['$scope', '$http', function($s
 		};*/
 
 		// Use to post to Filter database
-		var tmp = [];
+		/*var tmp = [];
 		for ( var key in $scope.filter_category ){
 			tmp.push(key);
 		}
@@ -366,7 +366,7 @@ angular.module('urpoApp').controller('testCtrl', ['$scope', '$http', function($s
 			tmp.push(key);
 		}
 		$http.put("/filter/"+$scope.tmp_filter_id, {'principal': tmp});
-		
+		*/
 	}
 }]);
 
