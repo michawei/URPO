@@ -28,12 +28,12 @@ router.put('/:id', function(req, res, next) {
 });
 
 /* Delete */
-router.delete('/:id', function(req, res, next) {
+/*router.delete('/:id', function(req, res, next) {
 	filter.findByIdAndRemove(req.params.id, req.body, function(err, post) {
 		if (err) return next(err);
 		res.json(post);
 	})
-});
+});*/
 
 /* 搜尋頁面 */
 /*router.get('/data', function(req, res, next) {
@@ -43,7 +43,7 @@ router.delete('/:id', function(req, res, next) {
   });
 });*/
 
-router.get('/sample', function(req, res) {
+/*router.get('/sample', function(req, res) {
 	_data = {
 		Category: ["Lo", "B", "C", "D"], 
 		Dept: ["URPO", "LED", "Life Science", "F"], 
@@ -55,9 +55,9 @@ router.get('/sample', function(req, res) {
 		Principal_Investigators: ["Peter", "Jerry", "Ken", "AD", "Eillfd", "Fred"]
 	};
     res.json(_data);  
-});
+});*/
 
-router.put('/data:id', function(req, res, next) {
+/*router.put('/data:id', function(req, res, next) {
 	console.log(req.body);
 
 	//拿到ID
@@ -77,7 +77,7 @@ router.put('/data:id', function(req, res, next) {
 		if (err) return next(err);
 		res.json(post);
 	})
-});
+});*/
 
 /* 搜尋頁面的filter部分
 router.post('/data:id', function(req, res, next) {
