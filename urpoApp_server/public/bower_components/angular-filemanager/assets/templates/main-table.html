@@ -2,7 +2,6 @@
     <thead>
         <tr>
             <th>{{"name" | translate}}</th>
-            <th class="hidden-xs">{{"size" | translate}}</th>
             <th class="hidden-sm hidden-xs">{{"date" | translate}}</th>
             <th class="hidden-sm hidden-xs">{{"permissions" | translate}}</th>
             <th class="text-right">{{"actions" | translate}}</th>
@@ -27,13 +26,11 @@
         <tr data-ng-repeat="item in fileNavigator.fileList | filter: query | orderBy: orderProp" data-ng-show="!fileNavigator.requesting">
             <td>
                 <a href="" data-ng-click="smartClick(item)" ng-right-click="smartRightClick(item)" title="{{item.model.name}} ({{item.model.sizeKb()}}kb)">
-                    <i class="glyphicon glyphicon-folder-close" data-ng-show="item.model.type === 'dir'"></i>
-                    <i class="glyphicon glyphicon-file" data-ng-show="item.model.type === 'file'"></i>
-                    {{item.model.name | strLimit : 64}}
+                    <i class="glyphicon glyphicon-folder-close" data-ng-show="item.model.type === 'dir'"></i> <span data-ng-show="item.model.type === 'dir'"> {{item.model.name | strLimit : 64}} </span>
+                    <i class="glyphicon glyphicon-file" data-ng-show="item.model.type === 'file'" style='color: grey'></i>
+                    <span data-ng-show="item.model.type === 'file'" style='color: grey'> {{item.model.name | strLimit : 64}} </span>
+                    
                 </a>
-            </td>
-            <td class="hidden-xs">
-                {{item.model.sizeKb()}}kb
             </td>
             <td class="hidden-sm hidden-xs">
                 {{item.model.date.toString()}}

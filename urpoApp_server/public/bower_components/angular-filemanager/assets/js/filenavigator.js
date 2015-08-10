@@ -74,10 +74,10 @@
         };
 
         FileNavigator.prototype.folderClickByName = function(fullPath) {
-            var self = this;
-            fullPath = fullPath.replace(RegExp("^\/*", "g"), '').split('/');
-            self.currentPath = fullPath && fullPath[0] === "" ? [] : fullPath;
-            self.refresh();
+        	var self = this;
+          fullPath = fullPath.replace(RegExp("^\/*", "g"), '').split('/');
+          self.currentPath = fullPath && fullPath[0] === "" ? [] : fullPath;
+          self.refresh();
         };
 
         FileNavigator.prototype.folderClick = function(item) {

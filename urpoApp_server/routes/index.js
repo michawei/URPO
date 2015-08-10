@@ -6,7 +6,16 @@ var bodyParser = require('body-parser');
 var colors = require('colors');
 var multer  = require('multer');
 
-router.use(multer({ dest: './public/uploads/'}));
+router.use(multer({ 
+	dest: '../public/test_server_folder',
+	changeDest: function(dest, req, res) {
+		console.log(req.body);
+	  return dest + req.body.destination; 
+	},
+	rename: function (fieldname, filename) {
+    return filename.replace(/\W+/g, '-');
+  }
+}));
 
 // parse application/x-www-form-urlencoded
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -20,7 +29,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/api/list', function(req, res) {
-	var _p = path.join(__dirname, '..', 'node_modules', req.body.path);
+	var _p = path.join(__dirname, '..', 'public/test_server_folder', req.body.path);
 	processReq(_p, res);
 });
 
@@ -112,10 +121,7 @@ router.get('/api/download', function(req, res) {
 });
 
 router.post('/api/upload', function(req, res) {
-	console.log('uploading');
-	console.log(req.body);
-	console.log(req.files);
-	res.end();
+	res.json(req.files);
 });
 
 router.post('/api/resource', function(req, res) {
@@ -126,10 +132,17 @@ function processReq(_p, res) {
 	var resp = [];
 	//if(list != undefined) {
 		fs.readdir(_p, function(err, list) {
-			for (var i = list.length - 1; i >= 0; i--) {
-				resp.push(processNode(_p, list[i]));
+			if(list != undefined) {
+				for (var i = list.length - 1; i >= 0; i--) {
+					resp.push(processNode(_p, list[i]));
+				}
+				res.json(resp);
+			} else {
+				if (!fs.existsSync(_p)){
+					fs.mkdirSync(_p);
+					res.json({ "result": { "success": true, "error": null } });  // assume successful !!!!!
+				}
 			}
-			res.json(resp);
 		});
   //}
 }

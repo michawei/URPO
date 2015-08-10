@@ -96,6 +96,7 @@
             item.remove(function() {
                 $scope.fileNavigator.refresh();
                 $('#delete').modal('hide');
+                console.log('refreshed');
             });
         };
 
@@ -127,13 +128,39 @@
         };
 
         $scope.uploadFiles = function() {
-            $scope.fileUploader.upload($scope.uploadFileList, $scope.fileNavigator.currentPath).success(function() {
-                $scope.fileNavigator.refresh();
-                $('#uploadfile').modal('hide');
-            }).error(function(data) {
-                var errorMsg = data.result && data.result.error || $translate.instant('error_uploading_files');
-                $scope.temp.error = errorMsg;
-            });
+
+          var fileList = $scope.uploadFileList;
+          var path = $scope.fileNavigator.currentPath;
+
+          var dataList = [];
+
+        	if (fileList && fileList.length) {
+        		console.log(fileList.length);
+	            for (var i = 0; i < fileList.length; i++) {
+	                var file = fileList[i];
+	                Upload.upload({
+	                    url: fileManagerConfig.uploadUrl,
+	                    fields: {'destination': '/' + path.join('/')},
+	                    file: file
+	                }).progress(function (evt) {
+	                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+	                    console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+	                }).success(function (data, status, headers, config) {
+	                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+	                    self.inprocess = false;
+	                    dataList.push(data);
+	                    if(i == fileList.length) {
+	                    	$scope.fileNavigator.refresh();
+                        $('#uploadfile').modal('hide');
+                        console.log('success');
+	                    }
+	                }).error(function (data, status, headers, config) {
+	                    console.log('error status: ' + status);
+	                    self.inprocess = false;
+	                });
+	            }
+		        }
+
         };
 
         $scope.getQueryParam = function(param) {

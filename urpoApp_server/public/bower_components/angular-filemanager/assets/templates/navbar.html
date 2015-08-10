@@ -21,15 +21,6 @@
             <i class="glyphicon glyphicon-upload"></i> {{"upload_file" | translate}}
         </button>
 
-        <button class="btn btn-danger btn-sm dropdown-toggle" type="button" id="dropDownMenuLang" data-toggle="dropdown" aria-expanded="true">
-            <i class="glyphicon glyphicon-globe"></i> {{"language" | translate}} <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropDownMenuLang">
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="" data-ng-click="changeLanguage('en')">{{"english" | translate}}</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="" data-ng-click="changeLanguage('es')">{{"spanish" | translate}}</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="" data-ng-click="changeLanguage('pt')">{{"portuguese" | translate}}</a></li>
-        </ul>
-
         <button class="btn btn-danger btn-sm" data-ng-click="$parent.setTemplate('main-icons.html')" data-ng-show="$parent.viewTemplate !== 'main-icons.html'" title="{{'icons' | translate}}">
             <i class="glyphicon glyphicon-th-large"></i>
         </button>
