@@ -19,6 +19,13 @@ router.get('/:name', function(req, res, next) {
 	});
 });
 
+/*router.get('/:id', function(req, res, next) {
+	pm.findById(req.params.id, function (err, data) {
+	    if (err) return next(err);
+	    res.json(data);
+  	});  
+});*/
+
 /* Add/Edit頁面 */
 router.post('/', function(req, res, next) {
 	pm.create(req.body, function (err, post) {

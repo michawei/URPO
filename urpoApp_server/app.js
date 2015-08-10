@@ -8,9 +8,9 @@ var mongoose = require('mongoose');
 var cors = require('cors')
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
-var draft = require('./routes/draft');
-var history = require('./routes/history');
+//var users = require('./routes/users');
+//var draft = require('./routes/draft');
+//var history = require('./routes/history');
 var project = require('./routes/project');
 var filter = require('./routes/filter');
 var projectmanager = require('./routes/pm');
@@ -31,9 +31,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
-app.use('/draft', draft);
-app.use('/history', history);
+//app.use('/users', users);
+//app.use('/draft', draft);
+//app.use('/history', history);
 app.use('/project', project);
 app.use('/filter', filter);
 app.use('/pm', projectmanager);
