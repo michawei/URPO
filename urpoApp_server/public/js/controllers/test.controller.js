@@ -173,9 +173,13 @@ angular.module('urpoApp').controller('testCtrl', ['$scope', '$http', function($s
 	};
 
 	$scope.send_2 = function(){
-		
+
+		$http.get("/project/filter").success(function(data){
+			console.log(data);
+		});
+
 		// Use to post to pm database
-		var tmp_dict = {};
+		/*var tmp_dict = {};
 		$http.get("/project").success(function(data){
 			//console.log(data);
 			$scope.project_list = data;
@@ -264,13 +268,13 @@ angular.module('urpoApp').controller('testCtrl', ['$scope', '$http', function($s
 				$scope.tmp_filter_id = filter_data._id;
 			});
 
-		});
+		});*/
 	};
 
 	$scope.send_3 = function(){
 		
 		//Use to update PM's Project_id
-		for ( var key in $scope.PM_list){
+		/*for ( var key in $scope.PM_list){
 			//console.log(key);
 			//console.log("/pm/"+$scope.PM_list[key].real_id);
 			$http.put("/pm/"+$scope.PM_list[key].real_id, {"projectID": $scope.PM_list[key].projectID});
@@ -333,7 +337,7 @@ angular.module('urpoApp').controller('testCtrl', ['$scope', '$http', function($s
 			tmp.push(key);
 		}
 		$http.put("/filter/"+$scope.tmp_filter_id, {'principal': tmp});
-		
+		*/
 	}
 }]);
 
