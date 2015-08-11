@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html ng-app="urpoAPP">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Search</title>
+
+		
+
+		<!-- My CSS -->
+		<link rel="stylesheet" type="text/css" href="search.css" />
+
+		<!-- Bootstrap -->
+		<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+ 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		
+	  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		
+		
+		
+		<script type="text/javascript" src="angular.min.js"></script>
+
+		<!-- For csv output -->
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.3/ng-csv.js'></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-sanitize.min.js"></script>
+
+		<!-- Temporary DB and server -->
+		<script src='urpo_tempDB.js'></script>
+		<script src='urpo_tempServer.js'></script>
+
+		
+	 
+	  
+	  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+
+	 
+	</head>
+	<body ng-controller="searchController">
+		
+
+		<div>
+			<span>
+				<input type="button" value="全部選取" id="selectAllBtn" ng-click="selectAll()" />
+				<input type="button" value="全部取消" id="unselectAllBtn" ng-click="unselectAll()" />
+				<input type="button" value="匯出" id="csvBtn" ng-csv='getData1()' csv-header='getHeader()' charset='utf-8' add-bom='true'/>
+			</span>
+			<br />
+			<hr />
+			
+			<table id="displayTable">
+				<thead>
+					<tr>
+						<th>選取</th>
+						<th ng-repeat="y in header1" ng-hide="myHide($index)">
+							<button class='btn btn-sm btn-default' style='border: 0;' ng-click="sort($index)" ng-hide="glyphicon_hide($index)">
+								<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> 
+							</button>
+							<button class='btn btn-sm btn-default' style='border: 0;' ng-click="sort($index)" ng-hide="!glyphicon_hide($index)">
+								<span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span> 
+							</button> 
+							{{y}} 
+						</th>
+
+	    				
+	    				
+	  				</tr>
+  				</thead>
+  				<tbody>
+			  		<tr ng-repeat="x in Data | orderBy: order">
+			  			<td ng-if="x.select"><input type="checkbox" checked ng-click="unselect1(x)"/></td>
+			  			<td ng-if="!x.select"><input type="checkbox" unchecked ng-click="select1(x)"/></td>
+			  			<!--<td ng-repeat="y in x" ng-hide="myHide($index)"> {{y}}  </td> -->
+
+			  			<td> {{x.id}} </td>
+			  			<td> {{x.Project_Name}} </td>
+			  			<td> <a data-toggle="modal" data-target="#myModal" ng-click="transferOwnerData(x.Project_Owners, y)" ng-repeat="y in getOwner(x.Project_Owners)"> {{y}} <br> </a> </td>
+
+			  			<td> {{x.Category}} </td>
+			  			<td> {{x.Dept}} </td>
+			  			
+			  			<td> <a data-toggle="modal" data-target="#myModal" ng-click="transferInvestigatorData(x.Principal_Investigators, y)" ng-repeat="y in getInvestigator(x.Principal_Investigators)"> {{y}} <br> </a> </td>
+			  			<td> {{x.Region}} </td>
+			  			<td> {{x.Institution}} </td>
+
+			  			
+			  			
+			  			
+			  			<td> {{x.Estimated_Start_Date}} </td>
+			  			<td> {{x.Estimated_End_Date}} </td>
+			  		</tr>
+		  		</tbody>
+			</table>
+
+
+			<div class="demo">
+			    <h4>demo</h4>
+			    <div class="demo-content">
+			      <table class="defaultTable sar-table">
+			        <thead>
+			          <tr>
+			            <th>TIME</th>
+			            <th>%user</th>
+			            <th>%nice</th>
+			            <th>%system</th>
+			            <th>%iowait</th>
+			            <th>%idle</th>
+			          </tr>
+			        </thead>
+
+			        <tbody>
+			          <tr>
+			            <td>12:10:01 AM</td><td>28.86</td><td>0.04</td><td>1.65</td><td>0.08</td><td>69.36</td>
+			          </tr>
+			          <tr>
+			            <td>12:20:01 AM</td><td>26.54</td><td>0.00</td><td>1.64</td><td>0.08</td><td>71.74</td>
+
+			          </tr>
+			          <tr>
+			            <td>12:30:01 AM</td><td>29.73</td><td>0.00</td><td>1.66</td><td>0.09</td><td>68.52</td>
+			          </tr>
+			        </tbody>
+			      </table>
+
+			    </div>
+			  </div>
+
+			<p> Try Area </p>
+			
+			
+			  <!-- Modal -->
+			  <div class="modal fade" id="myModal" role="dialog">
+			    <div class="modal-dialog">
+			    
+			      <!-- Modal content-->
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">{{ModalName}}</h4>
+			        </div>
+			        <div class="modal-body">
+			          <p>{{Information}}</p>
+			          <p>{{Email}}</p>
+			          <p>{{Website}}</p>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			  
+			
+
+
+		</div>
+		<script src="search.js"></script>
+
+	</body>
+</html>

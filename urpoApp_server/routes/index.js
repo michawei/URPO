@@ -6,10 +6,12 @@ var bodyParser = require('body-parser');
 var colors = require('colors');
 var multer  = require('multer');
 
+var PATH = '../public/test_server_folder';
+
 router.use(multer({ 
-	dest: '../public/test_server_folder',
+	dest: path.join(__dirname, PATH),
 	changeDest: function(dest, req, res) {
-		console.log(req.body);
+		console.log(dest + req.body.destination);
 	  return dest + req.body.destination; 
 	},
 	rename: function (fieldname, filename) {
@@ -29,7 +31,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/api/list', function(req, res) {
-	var _p = path.join(__dirname, '..', 'public/test_server_folder', req.body.path);
+	var _p = path.join(__dirname, PATH , req.body.path);
 	processReq(_p, res);
 });
 
@@ -41,8 +43,8 @@ router.post('/api/mv', function(req, res) {
 			"newPath": "/public_html/index-copy.php"
 		}}
 	*/
-	var _p = path.join(__dirname, '..', 'node_modules', req.body.params.path);
-	var new_p = path.join(__dirname, '..', 'node_modules', req.body.params.newPath);
+	var _p = path.join(__dirname, PATH, req.body.params.path);
+	var new_p = path.join(__dirname, PATH, req.body.params.newPath);
 	fs.renameSync(_p, new_p);
 	res.json({ "result": { "success": true, "error": null } });  // assume successful !!!!!
 });
@@ -55,8 +57,8 @@ router.post('/api/cp', function(req, res) {
 			"newPath": "/public_html/index-copy.php"
 		}}
 	*/
-	var _p = path.join(__dirname, '..', 'node_modules', req.body.params.path);
-	var new_p = path.join(__dirname, '..', 'node_modules', req.body.params.newPath);
+	var _p = path.join(__dirname, PATH, req.body.params.path);
+	var new_p = path.join(__dirname, PATH, req.body.params.newPath);
 	fs.createReadStream(_p).pipe(fs.createWriteStream(new_p));
 	res.json({ "result": { "success": true, "error": null } });  // assume successful !!!!!
 
@@ -69,7 +71,7 @@ router.post('/api/rm', function(req, res) {
 			"path": "/public_html/index.php",
 		}}
 	*/
-	var _p = path.join(__dirname, '..', 'node_modules', req.body.params.path);
+	var _p = path.join(__dirname, PATH, req.body.params.path);
 	if(fs.statSync(_p).isDirectory())
 		deleteFolderRecursive(_p);
 	else
@@ -87,7 +89,7 @@ router.post('/api/mkdir', function(req, res) {
 			"path": "/public_html"
 		}}
 	*/
-	var _p = path.join(__dirname, '..', 'node_modules', req.body.params.path, req.body.params.name);
+	var _p = path.join(__dirname, PATH, req.body.params.path, req.body.params.name);
 	if (!fs.existsSync(_p)){
 		fs.mkdirSync(_p);
 		res.json({ "result": { "success": true, "error": null } });  // assume successful !!!!!
@@ -101,7 +103,7 @@ router.post('/api/getContent', function(req, res) {
 			"path": "/public_html/index.php"
 		}}
 	*/
-	var _p = path.join(__dirname, '..', 'node_modules', req.body.params.path);
+	var _p = path.join(__dirname, PATH, req.body.params.path);
 	fs.readFile(_p, 'utf8', function read(err, data) {
 		if (err) {
 			throw err;
@@ -114,7 +116,7 @@ router.get('/api/download', function(req, res) {
 	/*
 		get?mode=download&preview=true&path=/public_html/image.jpg
 	*/
-	var _p = path.join(__dirname, '..', 'node_modules', req.query.path);
+	var _p = path.join(__dirname, PATH, req.query.path);
 	console.log(_p);
 	res.sendFile(_p);
 

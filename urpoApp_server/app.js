@@ -5,17 +5,19 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var cors = require('cors')
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
-var draft = require('./routes/draft');
-var history = require('./routes/history');
+//var users = require('./routes/users');
+//var draft = require('./routes/draft');
+//var history = require('./routes/history');
 var project = require('./routes/project');
 var filter = require('./routes/filter');
 var projectmanager = require('./routes/pm');
 
 var app = express();
 
+app.use(cors());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -29,9 +31,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
-app.use('/draft', draft);
-app.use('/history', history);
+//app.use('/users', users);
+//app.use('/draft', draft);
+//app.use('/history', history);
 app.use('/project', project);
 app.use('/filter', filter);
 app.use('/pm', projectmanager);
@@ -67,12 +69,16 @@ app.use(function(err, req, res, next) {
   });
 });
 
-mongoose.connect('mongodb://127.0.0.1/urpoApp:server', function(err) {
-  if(err) {
-    console.log('mongodb connection error', err);
-  } else {
-    console.log('mongodb connection successful');
-  }
+/* initial mongoose */
+
+mongoose.connect('mongodb://localhost/urpoApp:server', function(err) {
+    if(err) {
+        console.log('mongodb connection error', err);
+    } else {
+        /* Warning -- Use to delete database */
+        //mongoose.connection.db.dropDatabase();
+        console.log('mongodb connection successful');
+    }
 });
 
 module.exports = app;

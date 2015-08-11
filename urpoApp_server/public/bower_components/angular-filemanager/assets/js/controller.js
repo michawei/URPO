@@ -135,7 +135,7 @@
           var dataList = [];
 
         	if (fileList && fileList.length) {
-        		console.log(fileList.length);
+        		console.log(fileManagerConfig.uploadUrl);
 	            for (var i = 0; i < fileList.length; i++) {
 	                var file = fileList[i];
 	                Upload.upload({
