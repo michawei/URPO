@@ -65,10 +65,10 @@
                     return a.name < b.name ? -1 : a.name === b.name ? 0 : 1;
                 });
             };
-
             !self.history.length && self.history.push({name: path, nodes: []});
             for (var o in self.fileList) {
                 var item = self.fileList[o];
+				console.log(self.history[0]);
                 item.isFolder() && recursive(self.history[0], item.model, path);
             }
         };

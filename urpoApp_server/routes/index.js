@@ -126,9 +126,24 @@ router.post('/api/upload', function(req, res) {
 	res.json(req.files);
 });
 
-router.post('/api/resource', function(req, res) {
-	res.send(fs.readFileSync(req.query.resource, 'UTF-8'));
+router.post('/api/edit', function(req, res) {
+	/*
+	{ "params": {
+		"mode": "savefile",
+		"content": "<?php echo random(); ?>",
+		"path": "/public_html/index.php",
+	}}
+	*/
+	var _p = path.join(__dirname, '..', 'node_modules', req.body.params.path);
+	fs.writeFile(_p, req.body.params.content, function(err) {
+		if (err) {
+			throw err;
+		}
+		res.json({ "result": { "success": true, "error": null } });  // assume successful !!!!!
+	});
 });
+
+
 
 function processReq(_p, res) {
 	var resp = [];

@@ -19,3 +19,10 @@ getContent:
 rm:
 	- remove dir won't refresh
 	
+download
+	- file name
+	
+edit 
+
+
+	

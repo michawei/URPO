@@ -183,7 +183,20 @@
             };
             var url = [fileManagerConfig.downloadFileUrl, $.param(data)].join('?');
             if (self.model.type !== 'dir') {
-                window.open(url, '_blank', '');
+				// implement by adding a tag
+				var $ifrm = $("<a style='display:none' download/>");
+				$ifrm.attr("href", url);
+				$ifrm.attr("id", "autoclick");
+				$ifrm.appendTo("body");
+				$ifrm.load(function () {
+					//if the download link return a page
+					//load event will be triggered
+					$("body").append(
+					"<div>Failed to download <i>'" + url + "'</i>!");
+				});
+				document.getElementById('autoclick').click();
+				//location.href = url;
+				//window.open(url, '_blank', '');
             }
         };
 

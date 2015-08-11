@@ -9,7 +9,7 @@
         renameUrl: "/api/mv",
         copyUrl: "/api/cp",
         removeUrl: "/api/rm",
-        editUrl: "bridges/php/handler.php",
+        editUrl: "/api/edit",
         getContentUrl: "/api/getContent",
         createFolderUrl: "/api/mkdir",
         downloadFileUrl: "/api/download",
