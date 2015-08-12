@@ -24,7 +24,7 @@ router.get('/:name', function(req, res, next) {
 	    if (err) return next(err);
 	    res.json(data);
   	});  
-});*/
+/
 
 /* Add/Edit頁面 */
 router.post('/', function(req, res, next) {

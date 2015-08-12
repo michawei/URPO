@@ -70,8 +70,8 @@ app.use(function(err, req, res, next) {
 });
 
 /* initial mongoose */
-
-mongoose.connect('mongodb://localhost/urpoApp:server', function(err) {
+// mongodb://localhost/urpoApp:server
+mongoose.connect('mongodb://172.16.13.6:27017/urpoApp:server', function(err) {
     if(err) {
         console.log('mongodb connection error', err);
     } else {
