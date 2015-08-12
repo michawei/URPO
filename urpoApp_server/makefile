@@ -1,4 +1,4 @@
 all: run
 
 run:
-	DEBUG=urpoApp:* ./bin/www
+	DEBUG=urpoApp_server:* ./bin/www

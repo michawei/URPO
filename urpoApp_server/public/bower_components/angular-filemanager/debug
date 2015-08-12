@@ -1,0 +1,28 @@
+list:
+	- if path not exist
+
+mkdir:
+	- what if dir already exist?
+	- on error
+
+mv: (move/rename)
+	- what if dir already exist?
+	- on error
+	
+cp:
+	- what if dir already exist?
+	- on error
+	
+getContent:
+	- on error
+	
+rm:
+	- remove dir won't refresh
+	
+download
+	- file name
+	
+edit 
+
+
+	

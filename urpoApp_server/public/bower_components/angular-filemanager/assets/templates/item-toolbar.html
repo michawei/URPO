@@ -1,0 +1,21 @@
+<div data-ng-show="!item.inprocess">
+    <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#edit" data-ng-show="config.allowedActions.edit && item.isEditable()" data-ng-click="item.getContent(); touch(item)" title="{{'edit' | translate}}">
+        <i class="glyphicon glyphicon-pencil"></i>
+    </button>
+    </button>
+    <button class="btn btn-sm btn-default" data-ng-show="config.allowedActions.download && !item.isFolder()" data-ng-click="item.download()" title="{{'download' | translate}}">
+        <i class="glyphicon glyphicon-cloud-download"></i>
+    </button>
+    <button class="btn btn-sm btn-default" data-ng-show="config.allowedActions.preview && item.isImage()" data-ng-click="item.preview()" title="{{'view_item' | translate}}">
+        <i class="glyphicon glyphicon-picture"></i>
+    </button>
+    <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#rename" data-ng-show="config.allowedActions.rename" data-ng-click="touch(item)" title="{{'rename' | translate}}">
+        <i class="glyphicon glyphicon-cog"></i>
+    </button>
+    <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete" ng-show="config.allowedActions.remove" data-ng-click="touch(item)" title="{{'remove' | translate}}">
+        <i class="glyphicon glyphicon-trash"></i>
+    </button>
+</div>
+<div data-ng-show="item.inprocess">
+    <button class="btn btn-sm" style="visibility: hidden">&nbsp;</button><span class="label label-warning">{{"wait" | translate}} ...</span>
+</div>
