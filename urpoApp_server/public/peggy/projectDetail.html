@@ -1,0 +1,275 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script src="urpoApp.js"></script>
+		<script src="projectDetailCtrl.js"></script>
+		<style>
+	        span.title,td.title { text-decoration:underline; color:gray;}
+	        div.memoClass {padding-bottom:10px; padding-left:10px; padding-right:10px; padding-top:10px; }
+	    </style>
+	</head>
+	<body>
+		<div ng-app="urpoApp" ng-controller="projectDetailCtrl" style=' font-family: Microsoft JhengHei;'>
+			
+			<h1 class="form-inline text-center ">
+			<span ng-style='starColor' class="glyphicon glyphicon-asterisk"></span>{{projTitle}}
+			<a><span style='margin-left:40px; font-size:30px;' class="glyphicon glyphicon-pencil"></span></a>
+			<a><span style='font-size:30px;' class="glyphicon glyphicon-trash"></span></a>
+			</h1>
+
+			<br>
+
+			<div style="margin:0px auto; padding-left:20px; width:90%; border:1px; border-style:solid; border-color:lightgray" >
+				<br>
+				<table><tr>
+						<td>
+							<table class="table table">
+								<thead><tr>
+									<td class='title'>編號</td>
+				   					<td>{{projID}}</td>
+								</tr></thead>
+								<tr>
+								    <td class='title'>分類</td>
+								    <td>{{projCategory}}</td>
+								</tr>
+								<tr>
+								    <td class='title'>部門</td>
+								    <td>{{projDepartment}}</td>
+								</tr>
+							</table>
+						</td>
+
+						<td>
+							<table class="table table">
+								<thead><tr>
+								    <td class='title'>國家/機構</td>		
+								    <td>{{projCountry}}/{{projInstitution}}</td>
+								</tr></thead>
+								<tr>
+								    <td class='title'>計畫開始日</td>
+								    <td>{{projStart}}</td>
+								</tr>
+								<tr>
+								    <td class='title'>計畫結束日</td>
+								    <td>{{projEnd}}</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table style="margin-left:20px;">
+								<tr>
+								    <td valign="top"><span style='background-color:LightGrey;'>負責人</span></td>
+								    <td valign="top">{{projOwners[0].Name}}({{projOwners[0].EmpID}})</td>
+								</tr>
+								<tr>
+								    <td valign="top"><span style='background-color:LightGrey; margin-right:20px'>主持人</span></td>		
+								    <td valign="top">{{projHost[0].Name}}<br>
+								    	<span style='font-size:15px'>{{projHost[0].Email}}</span>
+								    	<span style='font-size:15px'>{{projHost[0].Website}}</span>
+								    </td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<div align=center style='margin-left:20px; border:1px solid gray; height:100px; width:150px'>
+
+								<div style='background-color:lightgrey; width:100%; height:30%'>
+									<span>計畫總金額</span>
+								</div>
+								<div style='width:100%; height:30%; ;line-height:50px;' >
+									<span>{{projMoney}} {{projCurrency}}</span>
+								</div >
+
+							</div>
+						</td>
+				</tr></table>
+
+				<span ng-hide='more' ng-click='more=!more'><a>more</a></span>
+
+				<div style='margin-right:20px'>
+				<table ng-show='more' class="table">
+					<tr>
+						<td valign="top" style='width:10%'><span class='title'>階段</span></td>
+						<td valign="top">{{projProgress}}</td>
+					</tr>
+					<tr>
+					    <td valign="top"><span class='title'>計畫說明</span></td>
+					    <td valign="top">{{projDescription}}</td>
+					</tr>
+				</table>
+				<span ng-show='more' ng-click='more=!more'><a><br>less</a></span>
+				</div>
+
+			</div>
+
+			<br>
+
+			<div style="margin:0px auto; width:90%; background-color:LightGray; padding-top:10px; padding-bottom: 10px; padding-left:10px;">
+				<table>
+					<tr>	
+				    <td>
+					    <input ng-model='newTitle' class="form-control" type='text' size'55' placeholder='事件名稱' >
+					    <textarea ng-model='newContent' class="form-control" cols='55' rows='3' style='resize: none; margin-top:5px' placeholder='新增事件內容'></textarea>
+				    </td>
+
+				  	<td>
+				  		<table  style='margin-left:30px'>
+				  			<tr><td>
+				  					<input ng-model='newFrom' class="form-control datepicker" size='10' type="text" placeholder='起始時間'>
+				  				</td>
+				  				<td><span class="glyphicon glyphicon-calendar"></span></td>
+							</tr>
+				  			<tr><td>
+				  				<input ng-model='newTo' class="form-control datepicker" size='10'  type="text"  placeholder='結束時間'>
+				  				</td>
+				  				<td><span class="glyphicon glyphicon-calendar"></span></td>
+				  			</tr>
+				  		</table>
+
+			  			<td><div style='margin-left:30px'><select ng-model='newState' class="form-control">
+						  		<option value="" disabled selected>選擇狀態</option>
+							  	<option>Planning</option>
+							  	<option>Completed</option>
+						</select></div></td>
+				  	</td>
+					<td>
+						<table style="margin-left:30px;">
+							<tr>
+								<td>
+									<input ng-model='newFunding' class="form-control" size='10' type="text" placeholder='輸入金額'>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span class="glyphicon glyphicon-flag" style='font-size:20; color:#f0ad4e'></span>
+									<span style='font-size:20'>Milestone</span>
+								</td>
+								<td>
+									<div class="checkbox"><label><input type="checkbox"></label></div>
+								</td>
+							</tr>
+						</table>
+					</td>
+
+					<td><a><span ng-model='okBtn' class="glyphicon glyphicon-plus" style="margin-left:40px; cursor: pointer; font-size:30px;" ng-click="model.addEvent()"></span></a></td>
+				 	</tr>
+				</table>
+			</div>
+
+			<br>
+
+			<div style='margin:0px auto;width:90%;'>			
+			<table>
+				<td valign="top"><table class="table table-hover">
+					<thead>
+						<tr style="background-color:LightGray;">
+							<td style="width:32.5%">
+								<span ng-click="sort(1)">事件</span>
+								<span ng-hide = 'titleSort' class="glyphicon glyphicon-chevron-down" style="margin-left:10px; cursor: pointer;" ng-click="sort(1)"></span>
+								<span ng-show = 'titleSort' class="glyphicon glyphicon-chevron-up" style="margin-left:10px; cursor: pointer;" ng-click="sort(1)"></span>
+							</td>
+							<td style="width:15%">
+								<span ng-click="sort(2)">起始</span>
+								<span ng-hide = 'fromSort' class="glyphicon glyphicon-chevron-down" style="margin-left:10px; cursor: pointer;" ng-click="sort(2)"></span>
+								<span ng-show = 'fromSort' class="glyphicon glyphicon-chevron-up" style="margin-left:10px; cursor: pointer;" ng-click="sort(2)"></span>
+							</td>
+							<td style="width:15%">
+								<span ng-click="sort(3)">結束</span>
+								<span ng-hide = 'toSort' class="glyphicon glyphicon-chevron-down" style="margin-left:10px; cursor: pointer;" ng-click="sort(3)"></span>
+								<span ng-show = 'toSort' class="glyphicon glyphicon-chevron-up" style="margin-left:10px; cursor: pointer;" ng-click="sort(3)"></span>
+							</td>
+							<td style="width:10%">
+								<span ng-click="sort(4)">狀態</span>
+								<span ng-hide = 'stateSort' class="glyphicon glyphicon-chevron-down" style="margin-left:10px; cursor: pointer;" ng-click="sort(4)"></span>
+								<span ng-show = 'stateSort' class="glyphicon glyphicon-chevron-up" style="margin-left:10px; cursor: pointer;" ng-click="sort(4)"></span>
+							</td>
+							<td style="width:15%">
+								<span ng-click="sort(5)">Funding</span>
+								<span ng-hide = 'fundingSort' class="glyphicon glyphicon-chevron-down" style="margin-left:10px; cursor: pointer;" ng-click="sort(5)"></span>
+								<span ng-show = 'fundingSort' class="glyphicon glyphicon-chevron-up" style="margin-left:10px; cursor: pointer;" ng-click="sort(5)"></span>
+							</td>
+							<td style="width:12.5%">修改/刪除</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat-start="event in model.events | orderBy:predicate:reverse" anim-hide="event.removeFlag" anim-hide-done="model.removeEvent()">
+						<!-- normal state -->
+							<td ng-hide='event.editFlag' ng-click='model.markEventDetail(event)'><span>{{ event.title }}</span></td>
+							<td ng-hide='event.editFlag' ng-click='model.markEventDetail(event)' style='font-size:15px'><span>{{ event.from }}</span></td>
+							<td ng-hide='event.editFlag' ng-click='model.markEventDetail(event)' style='font-size:15px'><span>{{ event.to }}</span></td>
+							<td ng-hide='event.editFlag' ng-click='model.markEventDetail(event)' style='font-size:15px'><span>{{ event.state }}</span></td>
+							<td ng-hide='event.editFlag' ng-click='model.markEventDetail(event)'><span>{{ event.funding }}</span></td>
+							<td ng-hide='event.editFlag' >
+								<a><span ng-model='editBtn'class="glyphicon glyphicon-pencil" style="margin-left:10px; cursor: pointer; font-size:20px;" ng-click="model.markEventEdit(event)"></span></a>
+								<a><span ng-model='removeBtn'class="glyphicon glyphicon-remove" style="margin-left:10px; cursor: pointer; font-size:20px;" ng-click="model.markEventRemoved(event)"></span></a>
+							</td>
+
+						<!-- edit state -->
+							<td ng-show='event.editFlag'><span>
+								<input class="form-control" type='text' size='30' value='{{event.title}}' placeholder='{{event.title}}' id='title{{$index}}'>
+							</span></td>
+							<td ng-show='event.editFlag'><span>
+								<input class="form-control" size='7' type="text" id="from{{$index}}" value='{{event.from}}'placeholder='{{event.from}}'>
+							</span></td><span>
+							<td ng-show='event.editFlag'>
+								<input class="form-control" size='7' type="text" id="to{{$index}}" value='{{event.to}}'placeholder='{{event.to}}'>
+							</span></td>
+							<td ng-show='event.editFlag' ><span>
+								<select class="form-control" id='state{{$index}}'>
+									<option value="{{event.state}}">{{event.state}}</option>
+									<option>Planning</option>
+									<option>Completed</option>
+								</select>
+							</span></td>
+							<td ng-show='event.editFlag'><span>
+								<input class="form-control" type='text' size='30' value='{{event.funding}}' placeholder='{{event.funding}}' id='funding{{$index}}'>							
+							</span></td>
+							<td ng-show='event.editFlag'><span>
+								<a><span class="glyphicon glyphicon-floppy-disk" style="margin-left:10px; cursor: pointer; font-size:20px;" ng-click="model.saveEdit(event, $index)"></span></a>
+							</span></td>
+							</tr>
+						</tr>
+						<tr ng-repeat-end ng-show='event.detailFlag'>
+							<td colspan="6" ng-hide='event.editFlag'>&nbsp;&nbsp;&nbsp;&nbsp;
+								<span class="glyphicon glyphicon-share-alt"></span>{{ event.content }}
+							</td>
+							<td colspan="6" ng-show='event.editFlag'>&nbsp;&nbsp;&nbsp;&nbsp;
+								<span class="glyphicon glyphicon-share-alt"></span>
+								<textarea class="form-control" rows='3' style='resize: none;' placeholder='{{event.content}}' id='content{{$index}}'>{{event.content}}</textarea>
+							</td>
+						</tr>
+					</tbody>
+				</table></td>
+			<td valign="top" style='width:20%; padding-left:20px; padding-ringht:20px; padding-top:20px'>
+				<div>
+					<table>
+						<tr>
+							<div ng-hide='editMemo' class='memoClass' style='position:relative; width:100%; height:100%; background-color:#FFFF99;'>
+								<div align='right'>
+									<a><span class="glyphicon glyphicon-pencil" ng-click='editMemo=!editMemo'></span></a>
+								</div>
+								<textarea style='resize: none; outline: none; background-color:#FFFF99; border:0px' readonly="readonly" style='resize: none;' rows='15'>{{projMemo}}</textarea>
+							</div>
+							<div ng-show='editMemo' class='memoClass' style='position:relative; width:100%; height:100%; background-color:#FFFF99;'>
+								<div align='right'>
+									<a><span class="glyphicon glyphicon-floppy-disk" ng-click='saveMemo()'></span></a>
+								</div>
+								<textarea style='resize: none;' rows='15' id='memo'>
+									{{projMemo}}
+								</textarea>
+							</div>
+						</tr>
+					</table>
+				</div>
+
+			</td>
+		</table></div>
+		</div>
+		<br><br><br><br><br>
+	</body>
+</html>
