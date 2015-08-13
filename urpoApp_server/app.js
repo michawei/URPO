@@ -12,8 +12,8 @@ var routes = require('./routes/index');
 //var draft = require('./routes/draft');
 //var history = require('./routes/history');
 var project = require('./routes/project');
-var filter = require('./routes/filter');
-var projectmanager = require('./routes/pm');
+//var filter = require('./routes/filter');
+//var projectmanager = require('./routes/pm');
 
 var app = express();
 
@@ -35,8 +35,8 @@ app.use('/', routes);
 //app.use('/draft', draft);
 //app.use('/history', history);
 app.use('/project', project);
-app.use('/filter', filter);
-app.use('/pm', projectmanager);
+//app.use('/filter', filter);
+//app.use('/pm', projectmanager);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -71,7 +71,7 @@ app.use(function(err, req, res, next) {
 
 /* initial mongoose */
 // mongodb://localhost/urpoApp:server
-mongoose.connect('mongodb://172.16.13.6:27017/urpoApp:server', function(err) {
+mongoose.connect('mongodb://localhost/urpoApp:server', function(err) {
     if(err) {
         console.log('mongodb connection error', err);
     } else {

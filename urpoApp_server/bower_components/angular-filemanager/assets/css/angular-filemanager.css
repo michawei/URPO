@@ -64,7 +64,8 @@ input, select, textarea,
 }
 
 .navbar-fixed-top {
-    border: 0;
+    border: 5;
+    background-color: #0087fc;
 }
 
 .sidebar {
