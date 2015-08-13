@@ -4,6 +4,12 @@
     '$scope', '$translate', '$cookies', 'fileManagerConfig', 'item', 'fileNavigator', 'fileUploader', 'Upload',
     function($scope, $translate, $cookies, fileManagerConfig, Item, FileNavigator, FileUploader, Upload) {
 
+    	$scope.$watch('uploadingFiles', function (file) {
+    		console.log('drag-n-drop file changes');
+    		$scope.uploadFileList = $scope.uploadingFiles;
+	      $scope.uploadFiles();
+	    });
+
         $scope.config = fileManagerConfig;
         $scope.appName = fileManagerConfig.appName;
         $scope.orderProp = ['model.type', 'model.name'];
@@ -15,6 +21,7 @@
         $scope.viewTemplate = $cookies.viewTemplate || 'main-table.html';
 
         $scope.setTemplate = function(name) {
+
             $scope.viewTemplate = $cookies.viewTemplate = name;
         };
 

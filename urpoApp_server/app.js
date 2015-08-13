@@ -61,7 +61,11 @@ app.use(function(err, req, res, next) {
 
 /* initial mongoose */
 // mongodb://localhost/urpoApp:server
+<<<<<<< HEAD
 mongoose.connect('mongodb://127.0.0.1:27017/urpoApp:server', function(err) {
+=======
+mongoose.connect('mongodb://localhost/urpoApp:server', function(err) {
+>>>>>>> 0c7dbcdf00bc82d48a26e1925d92ded445a784b7
     if(err) {
         console.log('mongodb connection error', err);
     } else {

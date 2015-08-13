@@ -1,0 +1,110 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script src="urpoApp.js"></script>
+		<script src="projectDraftCtrl.js"></script>
+		<style>
+	        span.title,td.title { text-decoration:underline; color:gray;}
+	        div.memoClass {padding-bottom:10px; padding-left:10px; padding-right:10px; padding-top:10px; }
+	    </style>
+	</head>
+	<body>
+
+		<div ng-app="urpoApp" ng-controller="projectDetailCtrl" style=' font-family: Microsoft JhengHei;'>
+			
+			<h1 class="form-inline text-center ">
+			<span ng-style='starColor' class="glyphicon glyphicon-asterisk"></span>{{projTitle}}
+			<a><span style='margin-left:40px; font-size:30px;' class="glyphicon glyphicon-pencil"></span></a>
+			<a><span style='font-size:30px;' class="glyphicon glyphicon-trash"></span></a>
+			</h1>
+
+			<br>
+
+			<div style="margin:0px auto; padding-left:20px; width:90%; border:1px; border-style:solid; border-color:lightgray" >
+				<br>
+				<table><tr>
+						<td>
+							<table class="table table">
+								<thead><tr>
+									<td class='title'>編號</td>
+				   					<td>{{projID}}</td>
+								</tr></thead>
+								<tr>
+								    <td class='title'>分類</td>
+								    <td>{{projCategory}}</td>
+								</tr>
+								<tr>
+								    <td class='title'>部門</td>
+								    <td>{{projDepartment}}</td>
+								</tr>
+							</table>
+						</td>
+
+						<td>
+							<table class="table table">
+								<thead><tr>
+								    <td class='title'>國家/機構</td>		
+								    <td>{{projCountry}}/{{projInstitution}}</td>
+								</tr></thead>
+								<tr>
+								    <td class='title'>計畫開始日</td>
+								    <td>{{projStart}}</td>
+								</tr>
+								<tr>
+								    <td class='title'>計畫結束日</td>
+								    <td>{{projEnd}}</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table style="margin-left:20px;">
+								<tr>
+								    <td valign="top"><span style='background-color:LightGrey; margin-right:20px'>主持人</span></td>		
+								    <td valign="top">{{projHost[0].Name}}<br>
+								    	<span style='font-size:15px'>{{projHost[0].Email}}</span>
+								    </td>
+								</tr>
+								<tr>
+								    <td valign="top"><span style='background-color:LightGrey;'>負責人</span></td>
+								    <td valign="top">{{projOwners[0].Name}}({{projOwners[0].EmpID}})</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<div align=center style='margin-left:20px; border:1px solid gray; height:100px; width:150px'>
+
+								<div style='background-color:lightgrey; width:100%; height:30%'>
+									<span>計畫總金額</span>
+								</div>
+								<div style='width:100%; height:30%; ;line-height:50px;' >
+									<span>{{projMoney}} {{projCurrency}}</span>
+								</div >
+
+							</div>
+						</td>
+				</tr></table>
+
+
+				<div style='margin-right:20px'>
+				<table class="table">
+					<tr>
+						<td valign="top" style='width:10%'><span class='title'>階段</span></td>
+						<td valign="top">{{projProgress}}</td>
+					</tr>
+					<tr>
+					    <td valign="top"><span class='title'>計畫說明</span></td>
+					    <td valign="top">{{projDescription}}</td>
+					</tr>
+				</table>
+				</div>
+
+			</div>
+		</div>
+		<br><br><br><br><br>
+	</body>
+</html>

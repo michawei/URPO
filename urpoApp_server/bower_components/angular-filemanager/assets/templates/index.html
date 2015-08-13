@@ -1,7 +1,9 @@
 <div data-ng-controller="FileManagerCtrl">
     <div ng-include="'assets/templates/navbar.html'"></div>
 
-    <div class="container-fluid">
+    <div class="container-fluid drop-box" ngf-drop ng-model="files"
+		  ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+		  ngf-accept="'image/*,application/pdf,*/*'">
         <div class="row">
 
             <div class="col-sm-3 col-md-2 sidebar file-tree" ng-include="'assets/templates/sidebar.html'"></div>
