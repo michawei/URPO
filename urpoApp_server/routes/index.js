@@ -5,14 +5,16 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var colors = require('colors');
 var multer  = require('multer');
+var qs = require('qs');
 
-var PATH = '../public/test_server_folder';
+var PATH = '';
 
 router.use(multer({ 
 	dest: path.join(__dirname, PATH),
 	changeDest: function(dest, req, res) {
-		console.log(dest + req.body.destination);
-	  return dest + req.body.destination; 
+		console.log('++++:::::::::::++++++++++++' + dest);
+		console.log('path: ' + req.body.destination);
+	  return req.body.destination; 
 	},
 	rename: function (fieldname, filename) {
     return filename.replace(/\W+/g, '-');
@@ -30,7 +32,22 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/file-manager/path', function(req, res, next) {
+  res.json({ path: PATH});
+});
+
+router.get('/file-manager', function(req, res) {
+	if(req.query.path[0] != '/') {
+		PATH = '../public/' + req.query.path;
+	} else {
+		PATH = '../public' + req.query.path;
+	}
+	res.location('/bower_components/angular-filemanager');
+	res.end();
+});
+
 router.post('/api/list', function(req, res) {
+	console.log(PATH);
 	var _p = path.join(__dirname, PATH , req.body.path);
 	processReq(_p, res);
 });

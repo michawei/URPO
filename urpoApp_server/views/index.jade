@@ -1,4 +1,16 @@
 extends layout
 
 block content
-  iframe(src="bower_components/angular-filemanager" style='height: 500px; width: 100%')
+  input(type='text' id='pathText')
+  button(id='submitPath' style='margin-left: 4px;') Submit Path
+  div(id='test_fm')
+
+  script.
+    $('#submitPath').click(function() {
+      var path = $('#pathText').val();
+      $('#pathText').val('');
+      $.get('http://localhost:4000/file-manager?path=' + path).success(function(data) {
+        console.log(data);
+        });
+      $('#test_fm').append('<object data="/bower_components/angular-filemanager" width="1200" height="800"> <embed src="/bower_components/angular-filemanager" width="1200" height="800"> </embed> Error: Embedded data could not be displayed. </object>');
+    });
