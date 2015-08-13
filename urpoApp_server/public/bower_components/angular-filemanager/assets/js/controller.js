@@ -1,8 +1,8 @@
 (function(window, angular, $) {
     "use strict";
     angular.module('FileManagerApp').controller('FileManagerCtrl', [
-    '$scope', '$translate', '$cookies', 'fileManagerConfig', 'item', 'fileNavigator', 'fileUploader', 'Upload',
-    function($scope, $translate, $cookies, fileManagerConfig, Item, FileNavigator, FileUploader, Upload) {
+    '$scope', '$http', '$translate', '$cookies', 'fileManagerConfig', 'item', 'fileNavigator', 'fileUploader', 'Upload',
+    function($scope, $http, $translate, $cookies, fileManagerConfig, Item, FileNavigator, FileUploader, Upload) {
 
     	$scope.$watch('uploadingFiles', function (file) {
     		console.log('drag-n-drop file changes');
@@ -19,6 +19,11 @@
         $scope.fileUploader = FileUploader;
         $scope.uploadFileList = [];
         $scope.viewTemplate = $cookies.viewTemplate || 'main-table.html';
+
+        $http.get('/file-manager/path').success(function(data) {
+        	fileManagerConfig.folderUrl = data.path;
+        	console.log(data);
+        })
 
         $scope.setTemplate = function(name) {
 
@@ -147,7 +152,7 @@
 	                var file = fileList[i];
 	                Upload.upload({
 	                    url: fileManagerConfig.uploadUrl,
-	                    fields: {'destination': '/' + path.join('/')},
+	                    fields: {'destination': fileManagerConfig.folderUrl + path.join('/')},
 	                    file: file
 	                }).progress(function (evt) {
 	                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
